@@ -16,7 +16,7 @@ public class mysql {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             return DriverManager.getConnection("jdbc:mysql://localhost/db_biblioteca_senac?" +
-                                   "user=diego&password=1234");
+                                   "user=root&password=root");
         } catch (Exception ex) {
             throw new RuntimeException("Erro ao conectar no banco de dados");
         }
