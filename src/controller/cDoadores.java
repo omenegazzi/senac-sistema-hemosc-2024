@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import model.mDoadores;
 
 /**
  *
@@ -43,10 +45,10 @@ public class cDoadores {
 
             while (rs.next()) {
                 mDoadores modelE = new mDoadores();
-                modelE.setId_doador(rs.getInt("id_doador"));
+                modelE.setId_doadores(rs.getInt("id_doador"));
                 modelE.setNome(rs.getString("nome"));
                 modelE.setEndereco(rs.getString("endereco"));
-                modelE.setData_nascimento(rs.getString("data_nascimento"));
+                modelE.setDataNasc(rs.getDate("data_nascimento"));
                 modelE.setTelefone(rs.getString("telefone"));
                 modelE.setEmail(rs.getString("email"));
                 modelE.setCpf(rs.getString("cpf"));
@@ -95,7 +97,7 @@ public class cDoadores {
         List<cDoadores> lista = new ArrayList<>();
 
         try {
-            stmt = conn.prepareStatement("SELECT * FROM doadores")
+            stmt = conn.prepareStatement("SELECT * FROM doadores");
 
             while (rs.next()) {
                 mDoadores modelE = new mDoadores();
