@@ -42,4 +42,31 @@ public class cProdutos2 {
             Logger.getLogger(mProdutos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void alterar(mProdutos modelPr) {
+        Connection conn = mysql.conexao();
+
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            stmt = conn.prepareStatement("UPDATE  produtos set descricao = ?,tipo = ?, data_aquisicao = ?, estado = ?, data_ultima_aquisicao = ? WHERE id_produtos = ? ");
+            stmt.setString(1, modelPr.getDescricao());
+            stmt.setString(2, modelPr.getTipo());
+            stmt.setDate(3, modelPr.getData_aquisicao());
+            stmt.setString(4, modelPr.getEstado());
+            stmt.setDate(5, modelPr.getData_ultima_aquisicao());
+
+            stmt.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Produto alterado com sucesso!");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(mProdutos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    }
+    
+       
+    
 }
