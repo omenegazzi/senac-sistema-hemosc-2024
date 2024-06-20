@@ -10,7 +10,7 @@ public class mDoadores {
 
     private int id_doadores;
     private mCidades fkIdCidades;
-    private mTipoSanguineo fkIdTipoSangue;
+    private mTiposanguineo fkIdTipoSangue;
     private String nome;
     private String endereco;
     private Date dataNasc;
@@ -34,11 +34,11 @@ public class mDoadores {
         this.fkIdCidades = fkIdCidades;
     }
 
-    public mTipoSanguineo getFkIdTipoSangue() {
+    public mTiposanguineo getFkIdTipoSangue() {
         return fkIdTipoSangue;
     }
 
-    public void setFkIdTipoSangue(mTipoSanguineo fkIdTipoSangue) {
+    public void setFkIdTipoSangue(mTiposanguineo fkIdTipoSangue) {
         this.fkIdTipoSangue = fkIdTipoSangue;
     }
 
