@@ -9,7 +9,7 @@ import java.sql.Date;
 public class mSaidasDeSangue {
     private int id_saida_sangue;
     private mEntidades entidades;
-    private mTiposanguíneo tipo_sanguineo;
+    private mTiposanguineo tipo_sanguineo;
     private Date data;
     private String quantidade;
 
@@ -29,11 +29,11 @@ public class mSaidasDeSangue {
         this.entidades = entidades;
     }
 
-    public mTiposanguíneo getTipo_sanguineo() {
+    public mTiposanguineo getTipo_sanguineo() {
         return tipo_sanguineo;
     }
 
-    public void setTipo_sanguineo(mTiposanguíneo tipo_sanguineo) {
+    public void setTipo_sanguineo(mTiposanguineo tipo_sanguineo) {
         this.tipo_sanguineo = tipo_sanguineo;
     }
 
