@@ -14,12 +14,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.mCidades;
+import model.mColaboradores;
 
 /**
  *
  * @author gabriel.oliveira38
  */
 public class cColaboradores {
+
     public List<mColaboradores> listar() {
         Connection conn = mysql.conexao();
 
@@ -47,4 +50,6 @@ public class cColaboradores {
             Logger.getLogger(cColaboradores.class.getName()).log(Level.SEVERE, null, ex);
         }
         return lista;
+    }
 }
+    
