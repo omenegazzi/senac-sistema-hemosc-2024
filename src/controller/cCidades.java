@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import model.mCidades;
 
 /**
  *
@@ -23,19 +25,19 @@ import java.util.logging.Logger;
 
 public class cCidades {
 
-    public List<mcidades> listar() {
+    public List<mCidades> listar() {
         Connection conn = mysql.conexao();
 
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<mcidades> lista = new ArrayList<>();
+        List<mCidades> lista = new ArrayList<>();
         try {
             stmt = conn.prepareStatement("select* from cidades");
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                mcidades modele = new mcidades();
-                modele.setIdcidade(rs.getInt("id_cidade"));
+                mCidades modele = new mCidades();
+                modele.setId_cidade(rs.getInt("id_cidade"));
                 modele.setCodigo_ibge(rs.getInt("codigo_ibge"));
                 modele.setDescricao(rs.getString("descricao"));
                 modele.setUf(rs.getString("uf"));
@@ -43,7 +45,7 @@ public class cCidades {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(ccidades.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(mCidades.class.getName()).log(Level.SEVERE, null, ex);
         }
         return lista;
 
