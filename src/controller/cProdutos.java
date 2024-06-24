@@ -64,11 +64,29 @@ public class cProdutos {
         } catch (SQLException ex) {
             Logger.getLogger(mProdutos.class.getName()).log(Level.SEVERE, null, ex);
         }
+       
+    } 
+    
+        public void Excluir(mProdutos modelPr) {
+        Connection conn = mysql.conexao();
+
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            stmt = conn.prepareCall("DELETE FROM produtos WHERE id_produto = ?");
+            stmt.setInt(1, modelPr.getId_produto());
+
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(cProdutos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        JOptionPane.showMessageDialog(null, "Produto excluido com sucesso");
 
     }
-
-    
-    
+        
+       
     
     
     
