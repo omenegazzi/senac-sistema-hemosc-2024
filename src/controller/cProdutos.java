@@ -74,7 +74,7 @@ public class cProdutos {
         ResultSet rs = null;
 
         try {
-            stmt = conn.prepareCall("DELETE FROM produtos WHERE id_produto = ?");
+            stmt = conn.prepareCall("DELETE FROM produtos set descricao = ?,tipo = ?, data_aquisicao = ?, estado = ?, data_ultima_aquisicao = ? WHERE id_produto = ? ");
             stmt.setInt(1, modelPr.getId_produto());
 
             stmt.executeUpdate();
@@ -86,8 +86,24 @@ public class cProdutos {
 
     }
         
-       
-    
-    
-    
+       public void Pesquisar(mProdutos modelPr) {
+        Connection conn = mysql.conexao();
+
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            stmt = conn.prepareCall("Insert FROM produtos set descricao = ?,tipo = ?, data_aquisicao = ?, estado = ?, data_ultima_aquisicao = ? WHERE id_produto = ? ");
+            stmt.setInt(1, modelPr.getId_produto());
+
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(cProdutos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        JOptionPane.showMessageDialog(null, "Pesquisa do Produto concluída com sucesso");
+
+    }
+        
+         
 }
