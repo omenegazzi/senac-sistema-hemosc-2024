@@ -15,7 +15,7 @@ public class mDoacoes {
    private int id_doacao;
    private Date data;
    private mDoadores doadores;
-   private mTipoSanguineo tiposanguineo;
+   private mTiposanguineo tiposanguineo;
    private mColaboradores colaborador;
 
     public int getId_doacao() {
@@ -42,11 +42,11 @@ public class mDoacoes {
         this.doadores = doadores;
     }
 
-    public mTipoSanguineo getTiposanguineo() {
+    public mTiposanguineo getTiposanguineo() {
         return tiposanguineo;
     }
 
-    public void setTiposanguineo(mTipoSanguineo tiposanguineo) {
+    public void setTiposanguineo(mTiposanguineo tiposanguineo) {
         this.tiposanguineo = tiposanguineo;
     }
 
