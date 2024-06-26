@@ -72,9 +72,9 @@ public class cDoadores {
             stmt = conn.prepareStatement("INSERT INTO autores (nome,endereco,numero,bairro,cidade,cpf) VALUES (?,?,?,?,?,?)");
             stmt.setString(1, modelA.getNome());
             stmt.setString(2, modelA.getEndereco());
-            stmt.setString(3, modelA.getNumero());
-            stmt.setString(4, modelA.getBairro());
-            stmt.setString(5, modelA.getCidade());
+            //stmt.setString(3, modelA.getNumero());
+            ///stmt.setString(4, modelA.getBairro());
+            //stmt.setString(5, modelA.getCidade());
             stmt.setString(6, modelA.getCpf());
 
             stmt.executeUpdate();
@@ -87,7 +87,7 @@ public class cDoadores {
 
     }
 
-    public List<mDoadores> listar() {
+    /*public List<mDoadores> listar() {
 
         Connection conn = mysql.conexao();
 
@@ -146,6 +146,6 @@ public class cDoadores {
                     ex);
         }
 
-    }
+    }*/
 
 }
