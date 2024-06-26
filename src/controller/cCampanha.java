@@ -5,58 +5,59 @@
  */
 package controller;
 
+import database.mysql;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import model.mCampanha;
 
 /**
  *
  * @author rafael.tolomeotti
  */
 public class cCampanha {
-    public void cadastrar(Connection conn) {
-        try {
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO campanha (id_campanha, nome, descricao, data_inicio, data_fim) VALUES (?, ?, ?, ?, ?)");
-            int id_campanha = 0;
-            stmt.setInt(1, id_campanha);
-            String nome = null;
-            stmt.setString(2, nome);
-            String descricao = null;
-            stmt.setString(3, descricao);
-            Date data_inicio = null;
-            stmt.setDate(4, data_inicio);
-            Date data_fim = null;
-            stmt.setDate(5, data_fim);
 
+    public void cadastrar(mCampanha modelE) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try {
+            conn = mysql.conexao();
+            stmt = conn.prepareStatement("INSERT INTO campanha (nome, descricao, data_inicio, data_fim) VALUES (?, ?, ?, ?)");
+            stmt.setString(1, modelE.getNome());
+            stmt.setString(2, modelE.getDescricao());
+            stmt.setString(3, modelE.getDataInicio());
+            stmt.setString(4, modelE.getDataFim());
             stmt.executeUpdate();
 
-            JOptionPane.showMessageDialog(null, "Campanha cadastrada com sucesso!");
+            JOptionPane.showMessageDialog(null, "Cadastrado com sucesso!");
 
         } catch (SQLException ex) {
-            Logger.getLogger(cColaboradores.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-        public void excluir(Connection conn, int idCampanha) {
-        try {
-            PreparedStatement stmt = conn.prepareStatement("DELETE FROM campanha WHERE id_campanha = ?");
-            stmt.setInt(1, idCampanha);
+            // Tratar exceção SQL
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar: " + ex.getMessage());
 
-            int rowsAffected = stmt.executeUpdate();
-
-            if (rowsAffected > 0) {
-                JOptionPane.showMessageDialog(null, "Campanha excluída com sucesso!");
-            } else {
-                JOptionPane.showMessageDialog(null, "Campanha não encontrada.");
+        } finally {
+            // Fechar recursos
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(cColaboradores.class.getName()).log(Level.SEVERE, null, ex);
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
-    
 }
