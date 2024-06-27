@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorio-periodo-data" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fadec2be-5275-4701-a631-e1290fb7a7dc">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="banco_sangue"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM saida_sangue]]>
+	</queryString>
+	<field name="id_saida_sangue" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id_saida_sangue"/>
+		<property name="com.jaspersoft.studio.field.label" value="id_saida_sangue"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="saida_sangue"/>
+		<fieldDescription><![CDATA[id_saida_sangue]]></fieldDescription>
+	</field>
+	<field name="id_entidade" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id_entidade"/>
+		<property name="com.jaspersoft.studio.field.label" value="id_entidade"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="saida_sangue"/>
+		<fieldDescription><![CDATA[entidades]]></fieldDescription>
+	</field>
+	<field name="id_tipo_sanguineo" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id_tipo_sanguineo"/>
+		<property name="com.jaspersoft.studio.field.label" value="id_tipo_sanguineo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="saida_sangue"/>
+		<fieldDescription><![CDATA[tipo_sanguineo]]></fieldDescription>
+	</field>
+	<field name="data" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.name" value="data"/>
+		<property name="com.jaspersoft.studio.field.label" value="data"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="saida_sangue"/>
+		<fieldDescription><![CDATA[data]]></fieldDescription>
+	</field>
+	<field name="quantidade" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="quantidade"/>
+		<property name="com.jaspersoft.studio.field.label" value="quantidade"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="saida_sangue"/>
+		<fieldDescription><![CDATA[quantidade]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="80" splitType="Stretch">
+			<staticText>
+				<reportElement x="-1" y="10" width="560" height="59" uuid="89e39d60-9b2f-4a9d-afdc-7376f9e8f6f8"/>
+				<textElement textAlignment="Center">
+					<font fontName="Century Gothic" size="22" isBold="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Relatório de relação de doações 
+período de data]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="560" height="1" uuid="c714ac95-88f8-49ce-9f38-218eeccfca53"/>
+			</line>
+			<line>
+				<reportElement x="0" y="79" width="559" height="1" uuid="a2c0d173-4cb0-4d25-ab2b-3eecdd0792c1"/>
+			</line>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="420" y="60" width="88" height="20" uuid="31f7b460-33d5-4e1d-b4ee-1b9ef9a0ac6e"/>
+				<textFieldExpression><![CDATA["Feito em " + new java.util.Date() + "às "]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm">
+				<reportElement x="499" y="60" width="60" height="20" uuid="a0583569-7865-40e6-bf61-443ae9aeb074"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="54" splitType="Stretch">
+			<rectangle>
+				<reportElement x="50" y="25" width="495" height="29" backcolor="#E0E0E0" uuid="08bdb2bb-f8e3-46b6-a047-98337708e49e"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="60" y="30" width="50" height="19" uuid="a1e93ace-b0db-477c-bbb3-94cdace0fe8f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="763a3f82-741d-46c6-866a-c82d45216ef6"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+				<text><![CDATA[Id Sangue]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="30" width="60" height="18" uuid="6bd8233b-2d6c-4b14-8582-359683d0cfcb">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ce55dc9c-be81-4173-a2c9-312692f9445c"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+				<text><![CDATA[Entidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="30" width="80" height="18" uuid="dd572eb7-9a5c-42d4-8224-07ba4e6b9155">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="17713ac0-c8bb-426d-b303-103a0cce259b"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+				<text><![CDATA[Id tipo sanguineo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="310" y="30" width="100" height="18" uuid="257d8d4b-d1ae-411a-a058-d07661791ce8">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4df3af8d-39fe-4411-a4cc-94c28ff87dd8"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+				<text><![CDATA[Quantidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="430" y="30" width="100" height="18" uuid="092a619c-b788-487e-a3ce-87c8ed247f6c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="619e216a-0b1a-45a1-9da4-42bb05c91464"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+				<text><![CDATA[Data de saída]]></text>
+			</staticText>
+			<line>
+				<reportElement x="120" y="25" width="1" height="28" uuid="1c0948e4-9cd5-489c-8735-29a878acf428"/>
+			</line>
+			<line>
+				<reportElement x="200" y="25" width="1" height="29" uuid="3e26d3de-3c46-4adf-ad73-e4d25d267a46"/>
+			</line>
+			<line>
+				<reportElement x="300" y="25" width="1" height="29" uuid="bb06b9a9-0cd4-41c1-ac42-4d7a642b868e"/>
+			</line>
+			<line>
+				<reportElement x="420" y="25" width="1" height="29" uuid="f6913fd8-08c4-4415-aed8-1b1764f44f12"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="60" y="10" width="50" height="19" uuid="43eb1491-7a96-4e9b-965a-c02f1330d696">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="763a3f82-741d-46c6-866a-c82d45216ef6"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{id_saida_sangue}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="130" y="11" width="60" height="18" uuid="bfec186c-720e-4246-b3e8-94f3b718a020">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ce55dc9c-be81-4173-a2c9-312692f9445c"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{id_entidade}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="225" y="10" width="50" height="18" uuid="36fec205-e5aa-4ab8-935e-42c06332a64e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="17713ac0-c8bb-426d-b303-103a0cce259b"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{id_tipo_sanguineo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="310" y="11" width="100" height="18" uuid="127a76b6-e95b-4d89-bc5e-39b6b0c994e7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4df3af8d-39fe-4411-a4cc-94c28ff87dd8"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{quantidade}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyy" isBlankWhenNull="true">
+				<reportElement x="430" y="11" width="100" height="18" uuid="ba00edc3-292d-426e-bddd-2925b7d807ef">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="619e216a-0b1a-45a1-9da4-42bb05c91464"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{data}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="390">
+			<image>
+				<reportElement x="-89" y="160" width="449" height="230" uuid="1db59724-d897-4dd5-bb68-b77cc75d9f04"/>
+				<imageExpression><![CDATA["src/relatorios/hemosc.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</pageFooter>
+</jasperReport>
