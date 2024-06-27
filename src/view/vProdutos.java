@@ -361,22 +361,22 @@ public class vProdutos extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         mProdutos modelPr = new mProdutos();
-        cProdutos controllerE = new cProdutos();
+        cProdutos controllerPr = new cProdutos();
 
         modelPr.setId_produto(Integer.parseInt(jTextFieldCodigo.getText()));
         modelPr.setDescricao(jTextFieldDescricao.getText());
 
-        controllerE.alterar(modelPr);
+        controllerPr.alterar(modelPr);
         listarDados();
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         // TODO add your handling code here:
            mProdutos modelPr = new mProdutos();
-        cProdutos controllerE = new cProdutos();
+        cProdutos controllerPr = new cProdutos();
         modelPr.setId_produto(Integer.parseInt(jTextFieldCodigo.getText()));
 
-        controllerE.Excluir(modelPr);
+        controllerPr.Excluir(modelPr);
         listarDados();
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
@@ -386,12 +386,12 @@ public class vProdutos extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         DefaultTableModel tabela = (DefaultTableModel) jTableProdutos.getModel();
-        cProdutos controllerE = new cProdutos();
+        cProdutos controllerPr = new cProdutos();
         tabela.setNumRows(0);
         
        
 
-        for (mProdutos modelPr : controllerE.pesquisar(jButtonPesquisar.getText(), jComboBoxProduto.getSelectedIndex())) {
+        for (mProdutos modelPr : controllerPr.pesquisar(jButtonPesquisar.getText(), jComboBoxProduto.getSelectedIndex())) {
             tabela.addRow(new Object[]{
                 modelPr.getId_produto(),
                 modelPr.getId_produto()
