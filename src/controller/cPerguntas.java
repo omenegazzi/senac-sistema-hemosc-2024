@@ -67,4 +67,49 @@ public class cPerguntas {
         
         return lista;
     }
+    
+    public void alterar(mPerguntas modelP) {
+        Connection conn = mysql.conexao();
+
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            stmt = conn.prepareStatement("UPDATE perguntas SET descricao = ? WHERE id_pergunta = ? ");
+            stmt.setString(1, modelP.getDescricao());
+            stmt.setInt(2, modelP.getId_pergunta());
+            stmt.executeUpdate();
+        
+            JOptionPane.showMessageDialog(null, "Pergunta alterada com sucesso");
+        } catch (SQLException ex) {
+            Logger.getLogger(cChecklist.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void excluir(mPerguntas modelP) {
+        Connection conn = mysql.conexao();
+
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        //Exclui primeiro o registro se existir no checklist
+        try {
+            stmt = conn.prepareStatement("DELETE FROM checklst where fk_perguntas_id_pergunta = ? ");
+            stmt.setInt(1, modelP.getId_pergunta());
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(cChecklist.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //Exclui a pergunta na tabela perguntas por último
+        try {
+            stmt = conn.prepareStatement("DELETE FROM perguntas where id_pergunta = ? ");
+            stmt.setInt(1, modelP.getId_pergunta());
+            stmt.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Pergunta excluída com sucesso");
+        } catch (SQLException ex) {
+            Logger.getLogger(cChecklist.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

@@ -70,7 +70,6 @@ public class cChecklist {
 
         try {
             stmt = conn.prepareStatement("INSERT INTO checklists (fk_perguntas_id_pergunta, resposta) VALUES (?,?)");
-//            modelP.setId_pergunta(rs.getInt(modelP.getId_pergunta()));
 
             modelM.setPergunta(modelP);
             
@@ -80,6 +79,41 @@ public class cChecklist {
             
         } catch (SQLException ex) {
             Logger.getLogger(cPerguntas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+     
+    public void alterar(mChecklist modelC, mPerguntas modelP) {
+        Connection conn = mysql.conexao();
+
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            stmt = conn.prepareStatement("UPDATE checklists SET resposta = ? WHERE id_checklist = ? AND fk_perguntas_id_pergunta = ? ");
+            stmt.setBoolean(1, modelC.getResposta());
+            stmt.setInt(2, modelC.getId_checklist());
+            stmt.setInt(3, modelP.getId_pergunta());
+            stmt.executeUpdate();
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(cChecklist.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+      
+    public void excluir(mChecklist modelC, mPerguntas modelP) {
+        Connection conn = mysql.conexao();
+
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            stmt = conn.prepareStatement("DELETE FROM checklists where id_checklist = ? AND fk_perguntas_id_pergunta = ? ");
+            stmt.setInt(1, modelC.getId_checklist());
+            stmt.setInt(2, modelP.getId_pergunta());
+            stmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(cChecklist.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
   
