@@ -12,13 +12,16 @@ import java.sql.Date;
  * @author mauro.vargas
  */
 public class mProdutos {
+   
     private int id_produto;
     private String descricao;
     private String tipo;
     private Date data_aquisicao;
     private String estado;
-    private Date data_ultima_aquisicao;
-
+    private Date data_ultima_manutencao;
+    
+    
+    
     public int getId_produto() {
         return id_produto;
     }
@@ -59,13 +62,14 @@ public class mProdutos {
         this.estado = estado;
     }
 
-    public Date getData_ultima_aquisicao() {
-        return data_ultima_aquisicao;
+    public Date getData_ultima_manutencao() {
+        return data_ultima_manutencao;
     }
 
-    public void setData_ultima_aquisicao(Date data_ultima_aquisicao) {
-        this.data_ultima_aquisicao = data_ultima_aquisicao;
+    public void setData_ultima_manutencao(Date data_ultima_manutencao) {
+        this.data_ultima_manutencao = data_ultima_manutencao;
     }
+        
     
     
 }
