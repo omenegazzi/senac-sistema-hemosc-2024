@@ -105,7 +105,8 @@ public class vExames extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Exames");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Exames", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Exames", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(255, 51, 51))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("Código:");
@@ -129,26 +130,50 @@ public class vExames extends javax.swing.JFrame {
         tfCodigo.setEditable(false);
 
         taResultados.setColumns(20);
+        taResultados.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         taResultados.setRows(5);
         jScrollPane1.setViewportView(taResultados);
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
+        bCadastrar.setBackground(new java.awt.Color(102, 255, 102));
+        bCadastrar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         bCadastrar.setText("Cadastrar");
+        bCadastrar.setMaximumSize(new java.awt.Dimension(90, 30));
+        bCadastrar.setMinimumSize(new java.awt.Dimension(90, 30));
+        bCadastrar.setPreferredSize(new java.awt.Dimension(90, 30));
         bCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bCadastrarActionPerformed(evt);
             }
         });
 
+        bAlterar.setBackground(new java.awt.Color(255, 255, 0));
+        bAlterar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         bAlterar.setText("Alterar");
+<<<<<<< HEAD (4de674b) - Merge origin/#75-altera
+=======
+        bAlterar.setMaximumSize(new java.awt.Dimension(90, 30));
+        bAlterar.setMinimumSize(new java.awt.Dimension(90, 30));
+        bAlterar.setPreferredSize(new java.awt.Dimension(90, 30));
+>>>>>>> origin/#72-checklistSalvar (e9f3166) - #
         bAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bAlterarActionPerformed(evt);
             }
         });
 
+<<<<<<< HEAD (4de674b) - Merge origin/#75-altera
         bExcluir.setText("Excluir");
+=======
+        bExcluir.setBackground(new java.awt.Color(255, 51, 51));
+        bExcluir.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        bExcluir.setText("Excluir");
+        bExcluir.setMaximumSize(new java.awt.Dimension(90, 30));
+        bExcluir.setMinimumSize(new java.awt.Dimension(90, 30));
+        bExcluir.setPreferredSize(new java.awt.Dimension(90, 30));
+>>>>>>> origin/#72-checklistSalvar (e9f3166) - #
         bExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bExcluirActionPerformed(evt);
@@ -161,7 +186,7 @@ public class vExames extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addComponent(bCadastrar)
+                .addComponent(bCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(bAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
@@ -171,15 +196,22 @@ public class vExames extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+<<<<<<< HEAD (4de674b) - Merge origin/#75-altera
                     .addComponent(bCadastrar)
                     .addComponent(bAlterar)
                     .addComponent(bExcluir))
+=======
+                    .addComponent(bCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+>>>>>>> origin/#72-checklistSalvar (e9f3166) - #
                 .addContainerGap())
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Consulta de Exames", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Consulta de Exames", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(255, 51, 51))); // NOI18N
 
         jTableExames.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -188,8 +220,6 @@ public class vExames extends javax.swing.JFrame {
             new String [] {
                 "Código", "Doador", "Doações", "Data do Exame"
             }
-        ));
-        jScrollPane3.setViewportView(jTableExames);
 
         bPesquisar.setText("Pesquisar");
         bPesquisar.addActionListener(new java.awt.event.ActionListener() {
@@ -228,7 +258,7 @@ public class vExames extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+                .addContainerGap(36, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
@@ -490,3 +520,12 @@ public class vExames extends javax.swing.JFrame {
 
     
 }
+<<<<<<< HEAD (4de674b) - Merge origin/#75-altera
+        ));
+        jScrollPane3.setViewportView(jTableExames);
+=======
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+>>>>>>> origin/#72-checklistSalvar (e9f3166) - #
