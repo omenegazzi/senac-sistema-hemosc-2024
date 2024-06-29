@@ -6,8 +6,14 @@
 package view;
 
 import controller.cChecklist;
+import controller.cPerguntas;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.mChecklist;
+import model.mPerguntas;
 
 /**
  *
@@ -31,7 +37,8 @@ public class vChecklist extends javax.swing.JFrame {
         for (mChecklist modelC : controllerC.listar()) {
             tabela.addRow(new Object[] {
 //                modelC.getId_checklist(),
-                modelC.getPergunta(),
+                modelC.getPergunta().getId_pergunta(),
+                modelC.getPergunta().getDescricao(),
                 modelC.getResposta()
             });
         }
@@ -53,7 +60,7 @@ public class vChecklist extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tChecklist = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        bCadastrarChecklist = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
@@ -73,14 +80,14 @@ public class vChecklist extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Descrição", "X"
+                "id_pergunta", "Descrição", "X"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -93,12 +100,17 @@ public class vChecklist extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tChecklist);
         if (tChecklist.getColumnModel().getColumnCount() > 0) {
-            tChecklist.getColumnModel().getColumn(0).setMinWidth(300);
+            tChecklist.getColumnModel().getColumn(1).setMinWidth(300);
         }
 
         jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButton1.setText("Salvar");
+        bCadastrarChecklist.setText("Cadastrar");
+        bCadastrarChecklist.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCadastrarChecklistActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Alterar");
 
@@ -110,19 +122,19 @@ public class vChecklist extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(bCadastrarChecklist)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton3)
-                .addGap(93, 93, 93))
+                .addGap(103, 103, 103))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(21, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(bCadastrarChecklist)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
                 .addContainerGap())
@@ -132,7 +144,7 @@ public class vChecklist extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -195,6 +207,38 @@ public class vChecklist extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void bCadastrarChecklistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCadastrarChecklistActionPerformed
+        mChecklist modelC = new mChecklist();
+        cChecklist controllerC = new cChecklist();
+        
+        DefaultTableModel tabela = (DefaultTableModel) tChecklist.getModel();
+        
+        
+        try {
+            for (int i = 0; i < tChecklist.getRowCount(); i++){
+                int id_pergunta = Integer.parseInt(tChecklist.getValueAt(i, 0).toString());
+                boolean resposta = (boolean) tChecklist.getValueAt(i, 2);
+
+                mPerguntas modelP = new mPerguntas();
+                modelP.setId_pergunta(id_pergunta);
+
+                mChecklist modelM = new mChecklist();
+                modelM.setPergunta(modelP);
+
+                modelC.setResposta(resposta);
+                controllerC.cadastrar(modelC, modelP);
+            }
+            JOptionPane.showMessageDialog(null, "Checklist cadastrada com sucesso");
+            
+        } catch (Exception e) {
+           JOptionPane.showMessageDialog(null, "Checklist não conseguiu ser salva! Revise as informações");
+        }
+        
+
+       
+        listarDados();
+    }//GEN-LAST:event_bCadastrarChecklistActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -231,7 +275,7 @@ public class vChecklist extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton bCadastrarChecklist;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;

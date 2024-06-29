@@ -38,5 +38,18 @@ public class mChecklist {
         this.pergunta = pergunta;
     }
     
+    public int getIdPergunta() {
+        return getPergunta().getId_pergunta();
+    }
     
+    public int setIdPergunta() {
+        return getPergunta().getId_pergunta();
+    }
+    
+    @Override
+    public String toString() {
+        return getPergunta().getDescricao();
+    }
+    
+
 }
