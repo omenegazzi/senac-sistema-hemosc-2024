@@ -1,12 +1,14 @@
 package model;
 
+import java.util.Date;
+
 public class mExames {
     private int id_exame;
     private String tipo_exame;
     private String resultado;
-    private String data_exame;
+    private Date data_exame;
     private mDoadores Doador;
-    private mDoacoes Doacoes;
+    private String Doacoes;
 
     public int getId_exame() {
         return id_exame;
@@ -32,11 +34,11 @@ public class mExames {
         this.resultado = resultado;
     }
 
-    public String getData_exame() {
+    public Date getData_exame() {
         return data_exame;
     }
 
-    public void setData_exame(String data_exame) {
+    public void setData_exame(Date data_exame) {
         this.data_exame = data_exame;
     }
 
@@ -48,13 +50,12 @@ public class mExames {
         this.Doador = Doador;
     }
 
-    public mDoacoes getDoacoes() {
+    public String getDoacoes() {
         return Doacoes;
     }
 
-    public void setDoacoes(mDoacoes Doacoes) {
+    public void setDoacoes(String Doacoes) {
         this.Doacoes = Doacoes;
     }
-      
-    
+   
 }
