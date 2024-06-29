@@ -89,4 +89,8 @@ public class mDoadores {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
+
+    public void setData(java.util.Date dataFormatada) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

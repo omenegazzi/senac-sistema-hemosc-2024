@@ -5,6 +5,14 @@
  */
 package view;
 
+
+import controller.cDoadores;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import model.mDoadores;
+
 /**
  *
  * @author fagner.bussacro
@@ -46,7 +54,7 @@ public class vDoadores extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jComboSangue = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextCpf = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jButtonCadastrar = new javax.swing.JButton();
         jButtonAlterar = new javax.swing.JButton();
@@ -118,7 +126,7 @@ public class vDoadores extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jTextTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jTextNome, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -140,7 +148,7 @@ public class vDoadores extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -171,6 +179,11 @@ public class vDoadores extends javax.swing.JFrame {
 
         jButtonCadastrar.setBackground(new java.awt.Color(153, 255, 153));
         jButtonCadastrar.setText("Cadastrar");
+        jButtonCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCadastrarActionPerformed(evt);
+            }
+        });
 
         jButtonAlterar.setBackground(new java.awt.Color(255, 255, 102));
         jButtonAlterar.setText("Alterar");
@@ -341,6 +354,32 @@ public class vDoadores extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
+
+        mDoadores modelA = new mDoadores();
+        cDoadores controllerA = new cDoadores();
+
+        modelA.setNome(jTextNome.getText());
+        modelA.setCpf(jTextCpf.getText());
+        modelA.setEndereco(jTextEndereco.getText());
+        modelA.setTelefone(jTextTelefone.getText());
+        modelA.setEmail(jTextEmail.getText());
+        
+
+          
+        try {
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+            Date dataFormatada;
+            dataFormatada = formato.parse(jTextDataNasci.getText());
+            modelA.setData(dataFormatada);
+        } catch (ParseException ex) {
+            java.util.logging.Logger.getLogger(vDoadores.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+           controllerA.cadastrar(modelA);
+        
+    }//GEN-LAST:event_jButtonCadastrarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -402,10 +441,10 @@ public class vDoadores extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableDoadores;
     private javax.swing.JTextField jTextBuscar;
+    private javax.swing.JTextField jTextCpf;
     private javax.swing.JTextField jTextDataNasci;
     private javax.swing.JTextField jTextEmail;
     private javax.swing.JTextField jTextEndereco;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextIdDoador;
     private javax.swing.JTextField jTextNome;
     private javax.swing.JTextField jTextTelefone;
