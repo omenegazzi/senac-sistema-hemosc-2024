@@ -16,8 +16,16 @@ public class mCampanha {
     private int id_campanha;
     private String nome;
     private String descricao;
-    private Date data_inicio;
-    private Date data_fim;
+    private String dataInicio;
+    private String dataFim;
+
+    public void setDataInicio(String text) {
+        this.dataInicio = text;
+    }
+
+    public void setDataFim(String text) {
+        this.dataFim = text;
+    }
 
     public void setId_campanha(int id_campanha) {
         this.id_campanha = id_campanha;
@@ -31,14 +39,13 @@ public class mCampanha {
         this.descricao = descricao;
     }
 
-    public void setData_inicio(Date data_inicio) {
-        this.data_inicio = data_inicio;
+    public String getDataInicio() {
+        return dataInicio;
     }
 
-    public void setData_fim(Date data_fim) {
-        this.data_fim = data_fim;
+    public String getDataFim() {
+        return dataFim;
     }
-
     public int getId_campanha() {
         return id_campanha;
     }
@@ -49,13 +56,5 @@ public class mCampanha {
 
     public String getDescricao() {
         return descricao;
-    }
-
-    public Date getData_inicio() {
-        return data_inicio;
-    }
-
-    public Date getData_fim() {
-        return data_fim;
     }
 }
