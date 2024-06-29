@@ -6,6 +6,7 @@
 package view;
 
 import controller.cPerguntas;
+import java.util.Set;
 import javax.swing.table.DefaultTableModel;
 import model.mPerguntas;
 
@@ -68,8 +69,8 @@ public class vPerguntas extends javax.swing.JFrame {
         tfDescP = new javax.swing.JTextField();
         jPanel9 = new javax.swing.JPanel();
         bCadastrarPerguntas = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
-        jButton16 = new javax.swing.JButton();
+        bAlterar = new javax.swing.JButton();
+        bExcluir = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
@@ -212,9 +213,19 @@ public class vPerguntas extends javax.swing.JFrame {
             }
         });
 
-        jButton15.setText("Alterar");
+        bAlterar.setText("Alterar");
+        bAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAlterarActionPerformed(evt);
+            }
+        });
 
-        jButton16.setText("Excluir");
+        bExcluir.setText("Excluir");
+        bExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bExcluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -224,9 +235,9 @@ public class vPerguntas extends javax.swing.JFrame {
                 .addGap(92, 92, 92)
                 .addComponent(bCadastrarPerguntas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton15)
+                .addComponent(bAlterar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton16)
+                .addComponent(bExcluir)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
@@ -235,8 +246,8 @@ public class vPerguntas extends javax.swing.JFrame {
                 .addContainerGap(24, Short.MAX_VALUE)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bCadastrarPerguntas)
-                    .addComponent(jButton15)
-                    .addComponent(jButton16))
+                    .addComponent(bAlterar)
+                    .addComponent(bExcluir))
                 .addGap(22, 22, 22))
         );
 
@@ -413,6 +424,30 @@ public class vPerguntas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfDescPActionPerformed
 
+    private void bAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAlterarActionPerformed
+        mPerguntas modelP = new mPerguntas();
+        cPerguntas controllerC = new cPerguntas();
+        
+        DefaultTableModel tabela = (DefaultTableModel) tPerguntasP.getModel();
+        int id_pergunta = (int) tPerguntasP.getValueAt(tPerguntasP.getSelectedRow(),0);
+        
+        modelP.setId_pergunta(id_pergunta);
+        modelP.setDescricao(tfDescP.getText());
+        controllerC.alterar(modelP);
+        listarDados();
+    }//GEN-LAST:event_bAlterarActionPerformed
+
+    private void bExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bExcluirActionPerformed
+        mPerguntas modelP = new mPerguntas();
+        cPerguntas controllerC = new cPerguntas();
+        
+        int id_pergunta = (int) tPerguntasP.getValueAt(tPerguntasP.getSelectedRow(),0);
+        
+        modelP.setId_pergunta(id_pergunta);
+        controllerC.excluir(modelP);
+        listarDados();
+    }//GEN-LAST:event_bExcluirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -449,10 +484,10 @@ public class vPerguntas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bAlterar;
     private javax.swing.JButton bCadastrar;
     private javax.swing.JButton bCadastrarPerguntas;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
+    private javax.swing.JButton bExcluir;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;

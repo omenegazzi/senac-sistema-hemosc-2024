@@ -36,7 +36,7 @@ public class vChecklist extends javax.swing.JFrame {
         
         for (mChecklist modelC : controllerC.listar()) {
             tabela.addRow(new Object[] {
-//                modelC.getId_checklist(),
+                modelC.getId_checklist(),
                 modelC.getPergunta().getId_pergunta(),
                 modelC.getPergunta().getDescricao(),
                 modelC.getResposta()
@@ -61,8 +61,8 @@ public class vChecklist extends javax.swing.JFrame {
         tChecklist = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         bCadastrarChecklist = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        bAlterar = new javax.swing.JButton();
+        bExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,14 +80,14 @@ public class vChecklist extends javax.swing.JFrame {
 
             },
             new String [] {
-                "id_pergunta", "Descrição", "X"
+                "Id_Checklist", "Id_Pergunta", "Descrição", "X"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, true
+                true, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -100,7 +100,7 @@ public class vChecklist extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tChecklist);
         if (tChecklist.getColumnModel().getColumnCount() > 0) {
-            tChecklist.getColumnModel().getColumn(1).setMinWidth(300);
+            tChecklist.getColumnModel().getColumn(2).setMinWidth(300);
         }
 
         jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -112,9 +112,19 @@ public class vChecklist extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Alterar");
+        bAlterar.setText("Alterar");
+        bAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAlterarActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Excluir");
+        bExcluir.setText("Excluir");
+        bExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bExcluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -124,9 +134,9 @@ public class vChecklist extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(bCadastrarChecklist)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(bAlterar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
+                .addComponent(bExcluir)
                 .addGap(103, 103, 103))
         );
         jPanel3Layout.setVerticalGroup(
@@ -135,8 +145,8 @@ public class vChecklist extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bCadastrarChecklist)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(bAlterar)
+                    .addComponent(bExcluir))
                 .addContainerGap())
         );
 
@@ -211,13 +221,10 @@ public class vChecklist extends javax.swing.JFrame {
         mChecklist modelC = new mChecklist();
         cChecklist controllerC = new cChecklist();
         
-        DefaultTableModel tabela = (DefaultTableModel) tChecklist.getModel();
-        
-        
         try {
             for (int i = 0; i < tChecklist.getRowCount(); i++){
-                int id_pergunta = Integer.parseInt(tChecklist.getValueAt(i, 0).toString());
-                boolean resposta = (boolean) tChecklist.getValueAt(i, 2);
+                int id_pergunta = Integer.parseInt(tChecklist.getValueAt(i, 1).toString());
+                boolean resposta = (boolean) tChecklist.getValueAt(i, 3);
 
                 mPerguntas modelP = new mPerguntas();
                 modelP.setId_pergunta(id_pergunta);
@@ -238,6 +245,62 @@ public class vChecklist extends javax.swing.JFrame {
        
         listarDados();
     }//GEN-LAST:event_bCadastrarChecklistActionPerformed
+
+    private void bAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAlterarActionPerformed
+        mChecklist modelC = new mChecklist();
+        cChecklist controllerC = new cChecklist();
+        
+        try {
+            for (int i = 0; i < tChecklist.getRowCount(); i++){
+                int id_checklist = Integer.parseInt(tChecklist.getValueAt(i, 0).toString());
+                int id_pergunta = Integer.parseInt(tChecklist.getValueAt(i, 1).toString());
+                boolean resposta = (boolean) tChecklist.getValueAt(i, 3);
+
+                mPerguntas modelP = new mPerguntas();
+                modelP.setId_pergunta(id_pergunta);
+
+//                mChecklist modelM = new mChecklist();
+                modelC.setResposta(resposta);
+                modelC.setId_checklist(id_checklist);
+                modelC.setPergunta(modelP);
+               
+                controllerC.alterar(modelC, modelP);
+            }
+            JOptionPane.showMessageDialog(null, "Checklist alterada com sucesso");
+        } catch (Exception e) {
+           JOptionPane.showMessageDialog(null, "Checklist não conseguiu ser salva! Revise as informações");
+        }
+        
+       
+        listarDados();
+    }//GEN-LAST:event_bAlterarActionPerformed
+
+    private void bExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bExcluirActionPerformed
+        mChecklist modelC = new mChecklist();
+        cChecklist controllerC = new cChecklist();
+        
+        try {
+            for (int i = 0; i < tChecklist.getRowCount(); i++){
+                int id_checklist = Integer.parseInt(tChecklist.getValueAt(i, 0).toString());
+                int id_pergunta = Integer.parseInt(tChecklist.getValueAt(i, 1).toString());
+
+                mPerguntas modelP = new mPerguntas();
+                modelP.setId_pergunta(id_pergunta);
+
+//                mChecklist modelM = new mChecklist();
+                modelC.setId_checklist(id_checklist);
+                modelC.setPergunta(modelP);
+               
+                controllerC.excluir(modelC, modelP);
+            }
+            JOptionPane.showMessageDialog(null, "Checklist excluída com sucesso");
+        } catch (Exception e) {
+           JOptionPane.showMessageDialog(null, "Checklist não conseguiu ser excluída! Revise as informações");
+        }
+        
+       
+        listarDados();
+    }//GEN-LAST:event_bExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -275,9 +338,9 @@ public class vChecklist extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bAlterar;
     private javax.swing.JButton bCadastrarChecklist;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton bExcluir;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
