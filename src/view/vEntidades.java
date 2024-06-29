@@ -5,7 +5,7 @@
  */
 package view;
 
-import controller.cEntidades;
+import controller.centidades;
 import model.mEntidades;
 
 /**
@@ -192,14 +192,14 @@ public class vEntidades extends javax.swing.JFrame {
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
 
         mEntidades modelA = new mEntidades();
-        cEntidades controllerA = new cEntidades();
+        centidades controllerA = new centidades();
 
         modelA.setNome(jTextFieldNome.getText());
         modelA.setEndereco(jTextFieldEndereco.getText());
         
        
-        controllerA.cadastrar(modelA);
-        listarDados();
+        //controllerA.cadastrar(modelA);
+        //listarDados();
 
 
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
@@ -261,7 +261,5 @@ public class vEntidades extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldNome;
     // End of variables declaration//GEN-END:variables
 
-    private void listarDados() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 }

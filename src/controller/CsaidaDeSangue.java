@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package controller;
 
 import database.mysql;
 import java.sql.Connection;
@@ -16,7 +16,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.mEntidades;
 import model.mSaidasDeSangue;
-import model.mTiposanguineo;
+import model.mTipoSanguineo;
+
 
 /**
  *
@@ -43,8 +44,8 @@ public class CsaidaDeSangue {
                 model.setId_entidades(rs.getInt("id_entidade"));
                 modelE.setEntidades(model);
 
-                mTiposanguineo modelT = new mTiposanguineo();
-                modelT.setId_tipo_sanguíneo(rs.getInt("id_tipo_sanguineo"));
+                mTipoSanguineo modelT = new mTipoSanguineo();
+                modelT.setId_tipo_sanguineo(rs.getInt("id_tipo_sanguineo"));
 
                 modelE.setTipo_sanguineo(modelT);
 

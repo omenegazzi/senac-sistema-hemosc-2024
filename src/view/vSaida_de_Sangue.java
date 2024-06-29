@@ -5,15 +5,15 @@
  */
 package view;
 
+import controller.cTipoSanguineo;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.mEntidades;
-import model.mSaidaSangue;
-import model.mTiposanguíneo;
-import Controller.cTiposanguíneo;
+import model.mSaidasDeSangue;
+import model.mTipoSanguineo;
 
 /**
  *
@@ -22,7 +22,7 @@ import Controller.cTiposanguíneo;
 public class vSaida_de_Sangue extends javax.swing.JFrame {
 
     /**
-     * Creates new form vSaida_de_Sangue
+     * Creates new form vSaida_d
      */
     public vSaida_de_Sangue() {
         initComponents();
@@ -357,9 +357,9 @@ public class vSaida_de_Sangue extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        mSaidaSangue modelE = new mSaidaSangue();
+        mSaidasDeSangue modelE = new mSaidasDeSangue();
 
-        modelE.setId_saida_de_sangue(Integer.parseInt(jIdSaida.getText()));
+        modelE.setId_saida_sangue(Integer.parseInt(jIdSaida.getText()));
 
         try {
             SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
@@ -369,13 +369,13 @@ public class vSaida_de_Sangue extends javax.swing.JFrame {
             Logger.getLogger(vSaida_de_Sangue.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        mTiposanguíneo tipo = (mTiposanguíneo) jComboBox2.getSelectedItem();
+        mTipoSanguineo tipo = (mTipoSanguineo) jComboBox2.getSelectedItem();
         mEntidades modelA = (mEntidades) jComboBox1.getSelectedItem();
 
         modelE.setEntidades(modelA);
-        modelE.setTiposanguineo(tipo);
+        modelE.setTipo_sanguineo(tipo);
 
-        modelE.setId_saida_de_sangue(Integer.parseInt(jTextField2.getText()));
+        modelE.setId_saida_sangue(Integer.parseInt(jTextField2.getText()));
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -396,10 +396,10 @@ public class vSaida_de_Sangue extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        mTiposanguíneo modelE = new mTiposanguíneo();
-        cTiposanguíneo controllerE = new cTiposanguíneo();
+        mTipoSanguineo modelE = new mTipoSanguineo();
+        cTipoSanguineo controllerE = new cTipoSanguineo();
 
-        modelE.setId_tipo_sanguíneo(Integer.parseInt(jIdSaida.getText()));
+        modelE.setId_tipo_sanguineo(Integer.parseInt(jIdSaida.getText()));
 
         controllerE.excluir(modelE);
     }//GEN-LAST:event_jButton4ActionPerformed

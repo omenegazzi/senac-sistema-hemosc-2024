@@ -1,7 +1,8 @@
-package Controller;
+package controller;
 
 import database.mysql;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,10 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import model.mColaboradores;
 import model.mDoacoes;
 import model.mDoadores;
-import model.mTiposanguineo;
+import model.mTipoSanguineo;
 
 /**
  *
@@ -39,8 +41,8 @@ public class cDoacoes {
                 modelD.setId_doadores(rs.getInt("id_doador"));
                 modele.setDoadores(modelD);
 
-                mTiposanguineo modelT = new mTiposanguineo();
-                modelT.setId_tipo_sanguíneo(rs.getInt("id_tipo_sanguineo"));
+                mTipoSanguineo modelT = new mTipoSanguineo();
+                modelT.setId_tipo_sanguineo(rs.getInt("id_tipo_sanguineo"));
                 modele.setTiposanguineo(modelT);
 
                 mColaboradores modelC = new mColaboradores();
@@ -61,9 +63,9 @@ public class cDoacoes {
 
         try {
             stmt = conn.prepareStatement("INSERT INTO doacoes ( data, id_doador, id_tipo_sanguineo,id_colaborador) VALUES (?, ?, ?, ?, ?)");
-            stmt.setDate(1, doacoes.getData());
+            stmt.setDate(1, (Date) doacoes.getData());
             stmt.setInt(2, doacoes.getDoadores().getId_doadores());
-            stmt.setInt(3, doacoes.getTiposanguineo().getId_tipo_sanguíneo());
+            stmt.setInt(3, doacoes.getTiposanguineo().getId_tipo_sanguineo());
             stmt.setInt(4, doacoes.getColaborador().getId_colaborador());
 
             stmt.executeUpdate();
@@ -109,8 +111,8 @@ public class cDoacoes {
                 modelD.setId_doadores(rs.getInt("id_doador"));
                 modelE.setDoadores(modelD);
 
-                mTiposanguineo modelB = new mTiposanguineo();
-                modelB.setId_tipo_sanguíneo(rs.getInt("id_tipo_sanguineo"));
+                mTipoSanguineo modelB = new mTipoSanguineo();
+                modelB.setId_tipo_sanguineo(rs.getInt("id_tipo_sanguineo"));
                 modelE.setTiposanguineo(modelB);
 
                 mColaboradores modelC = new mColaboradores();

@@ -1,6 +1,7 @@
 package model;
 
-import java.sql.Date;
+import java.util.Date;
+
 
 /**
  *
@@ -9,7 +10,7 @@ import java.sql.Date;
 public class mSaidasDeSangue {
     private int id_saida_sangue;
     private mEntidades entidades;
-    private mTiposanguineo tipo_sanguineo;
+    private mTipoSanguineo tipo_sanguineo;
     private Date data;
     private String quantidade;
 
@@ -29,11 +30,11 @@ public class mSaidasDeSangue {
         this.entidades = entidades;
     }
 
-    public mTiposanguineo getTipo_sanguineo() {
+    public mTipoSanguineo getTipo_sanguineo() {
         return tipo_sanguineo;
     }
 
-    public void setTipo_sanguineo(mTiposanguineo tipo_sanguineo) {
+    public void setTipo_sanguineo(mTipoSanguineo tipo_sanguineo) {
         this.tipo_sanguineo = tipo_sanguineo;
     }
 

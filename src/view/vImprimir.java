@@ -1,4 +1,5 @@
 package view;
+import controller.CsaidaDeSangue;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -11,7 +12,7 @@ import javax.swing.*;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.view.JRViewer;
+import net.sf.jasperreports.view.JasperViewer;
 
 
 
@@ -106,8 +107,11 @@ public class vImprimir extends javax.swing.JFrame {
             
             //Preenchimento do relatorio a partir da funcao listarSaida, pegando os dados da lista do model
             //JRBeanCollectionDataSource -> transforma uma lista em uma fonte de dados
+            
+            CsaidaDeSangue controllerS = new CsaidaDeSangue();
+            
             JasperPrint relatorioPreenchido = JasperFillManager.fillReport(relatorioCompilado, null, 
-                    new JRBeanCollectionDataSource(cSaidaSangue.listarSaida()));
+                    new JRBeanCollectionDataSource(controllerS.listar()));
             
             // Criação de uma tela para mostrar o relatorio nela
             
@@ -116,7 +120,7 @@ public class vImprimir extends javax.swing.JFrame {
             
             //Criação de um painel para colocar o relatorio
             
-             JRViewer painelRelatorio = new JRViewer(relatorioPreenchido);
+             JasperViewer painelRelatorio = new JasperViewer(relatorioPreenchido);
             
             //colocar painel com o relatorio na tela
             

@@ -391,12 +391,12 @@ public class vProdutos extends javax.swing.JFrame {
         
        
 
-        for (mProdutos modelPr : controllerPr.pesquisar(jButtonPesquisar.getText(), jComboBoxProduto.getSelectedIndex())) {
+        /*for (mProdutos modelPr : controllerPr.pesquisar(jButtonPesquisar.getText(), jComboBoxProduto.getSelectedIndex())) {
             tabela.addRow(new Object[]{
                 modelPr.getId_produto(),
                 modelPr.getId_produto()
             });
-        }        
+        }*/   
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     /**

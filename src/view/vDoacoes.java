@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import model.mColaboradores;
 import model.mDoacoes;
 import model.mDoadores;
-import model.mTiposanguineo;
+import model.mTipoSanguineo;
 
 /**
  *
@@ -333,7 +333,7 @@ public class vDoacoes extends javax.swing.JFrame {
         cDoacoes controllerE = new cDoacoes();
 
         mDoadores modelE = (mDoadores) cbDoador.getSelectedItem();
-        mTiposanguineo modelA = (mTiposanguineo) cbTipoSanguineo.getSelectedItem();
+        mTipoSanguineo modelA = (mTipoSanguineo) cbTipoSanguineo.getSelectedItem();
         mColaboradores ModelB = (mColaboradores) cbColaborador.getSelectedItem();
 
         modelL.setDoadores(modelE);
@@ -341,9 +341,8 @@ public class vDoacoes extends javax.swing.JFrame {
         modelL.setColaborador(ModelB);
         try {
             SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-            Date dataFormatada;
-            dataFormatada = formato.parse(tfData.getText());
-            modelA.setData(dataFormatada);
+            Date dataFormatada = formato.parse(tfData.getText());
+            modelL.setData(dataFormatada);
         } catch (ParseException ex) {
             java.util.logging.Logger.getLogger(vDoadores.class.getName()).log(Level.SEVERE, null, ex);
         }

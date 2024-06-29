@@ -46,7 +46,7 @@
 			<staticText>
 				<reportElement x="-1" y="10" width="560" height="59" uuid="89e39d60-9b2f-4a9d-afdc-7376f9e8f6f8"/>
 				<textElement textAlignment="Center">
-					<font fontName="Century Gothic" size="22" isBold="false" isStrikeThrough="false"/>
+					<font fontName="Arial" size="22" isBold="false" isStrikeThrough="false"/>
 				</textElement>
 				<text><![CDATA[Relatório de relação de doações 
 período de data]]></text>

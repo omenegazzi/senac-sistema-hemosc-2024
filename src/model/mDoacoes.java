@@ -5,7 +5,9 @@
  */
 package model;
 
-import java.sql.Date;
+import java.util.Date;
+
+
 
 /**
  *
@@ -15,7 +17,7 @@ public class mDoacoes {
    private int id_doacao;
    private Date data;
    private mDoadores doadores;
-   private mTiposanguineo tiposanguineo;
+   private mTipoSanguineo tiposanguineo;
    private mColaboradores colaborador;
 
     public int getId_doacao() {
@@ -42,11 +44,11 @@ public class mDoacoes {
         this.doadores = doadores;
     }
 
-    public mTiposanguineo getTiposanguineo() {
+    public mTipoSanguineo getTiposanguineo() {
         return tiposanguineo;
     }
 
-    public void setTiposanguineo(mTiposanguineo tiposanguineo) {
+    public void setTiposanguineo(mTipoSanguineo tiposanguineo) {
         this.tiposanguineo = tiposanguineo;
     }
 

@@ -15,7 +15,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import model.mCidades;
 import model.mDoadores;
+import model.mTipoSanguineo;
 
 /**
  *
@@ -87,34 +89,44 @@ public class cDoadores {
 
     }
 
-    /*public List<mDoadores> listar() {
+    public List<mDoadores> listar() {
 
         Connection conn = mysql.conexao();
 
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        List<cDoadores> lista = new ArrayList<>();
+        List<mDoadores> lista = new ArrayList<>();
 
         try {
             stmt = conn.prepareStatement("SELECT * FROM doadores");
 
             while (rs.next()) {
                 mDoadores modelE = new mDoadores();
-                modelE.setId_autor(rs.getInt("id_autor"));
+                modelE.setId_doadores(rs.getInt("id_doadores"));
                 modelE.setNome(rs.getString("nome"));
                 modelE.setEndereco(rs.getString("endereco"));
-                modelE.setBairro(rs.getString("bairro"));
-                modelE.setNumero(rs.getString("numero"));
-                modelE.setCidade(rs.getString("cidade"));
+                modelE.setTelefone(rs.getString("numero"));
                 modelE.setCpf(rs.getString("cpf"));
+                modelE.setEmail(rs.getString("cpf"));
+                
+                mCidades modelC = new mCidades();
+                modelC.setId_cidade(rs.getInt("fk_cidades_id_cidade"));
+                
+                
+                mTipoSanguineo modelT = new mTipoSanguineo();
+                modelT.setId_tipo_sanguineo(rs.getInt("fk_TipoSanguino_id_tipo_sanguineo"));
+
+                modelE.setFkIdCidades(modelC);
+                modelE.setFkIdTipoSangue(modelT);
 
                 lista.add(modelE);
 
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(cDoadores.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(cDoadores.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
 
         return lista;
@@ -129,23 +141,24 @@ public class cDoadores {
 
         try {
             stmt = conn.prepareStatement("UPDATE doador SET nome = ?, endereco = ?, bairro = ?, numero = ?, cidade = ?, cpf = ? WHERE id_doador = ? ");
-            stmt.setString(1, modelE.getNome());
-            stmt.setString(2, modelE.getEndereco());
-            stmt.setString(3, modelE.getBairro());
-            stmt.setString(4, modelE.getNumero());
-            stmt.setString(5, modelE.getCidade());
-            stmt.setString(6, modelE.getCpf());
-            stmt.setInt(7, modelE.getId_autor());
+            //stmt.setString(1, modelE.getNome());
+            //stmt.setString(2, modelE.getEndereco());
+           //stmt.setString(3, modelE.getBairro());
+           // stmt.setString(4, modelE.getNumero());
+           // stmt.setString(5, modelE.getCidade());
+           // stmt.setString(6, modelE.getCpf());
+           // stmt.setInt(7, modelE.getId_autor());
 
             stmt.executeUpdate();
 
             JOptionPane.showMessageDialog(null, "Doador(a) alterado com sucesso!");
 
         } catch (SQLException ex) {
-            Logger.getLogger(cDoadores.class.getName()).log(Level.SEVERE, null,
-                    ex);
+            Logger.getLogger(cDoadores.class
+                    .getName()).log(Level.SEVERE, null,
+                            ex);
         }
 
-    }*/
+    }
 
 }

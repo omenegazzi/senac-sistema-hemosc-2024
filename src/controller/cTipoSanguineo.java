@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import model.mTiposanguineo;
+import model.mTipoSanguineo;
 
 /**
  *
@@ -23,21 +23,21 @@ import model.mTiposanguineo;
  */
 public class cTipoSanguineo {
 
-    public List<mTiposanguineo> listar() {
+    public List<mTipoSanguineo> listar() {
         Connection conn = mysql.conexao();
 
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        List<mTiposanguineo> lista = new ArrayList<>();
+        List<mTipoSanguineo> lista = new ArrayList<>();
 
         try {
             stmt = conn.prepareStatement("SELECT * FROM tipos_sanguineo");
             rs = stmt.executeQuery();
 
             while (rs.next()) {
-                mTiposanguineo modelE = new mTiposanguineo();
-                modelE.setId_tipo_sanguíneo(rs.getInt("id_tipo_sanguineo"));
+                mTipoSanguineo modelE = new mTipoSanguineo();
+                modelE.setId_tipo_sanguineo(rs.getInt("id_tipo_sanguineo"));
                 modelE.setDescricao(rs.getString("descricao"));
                 modelE.setFator_rh(rs.getString("fator_rh"));
                 modelE.setEstoque(rs.getInt("estoque"));
@@ -47,12 +47,12 @@ public class cTipoSanguineo {
 
             }
         } catch (SQLException ex) {
-            Logger.getLogger(mTiposanguineo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(mTipoSanguineo.class.getName()).log(Level.SEVERE, null, ex);
         }
         return lista;
     }
 
-    public void alterar(mTiposanguineo modelE) {
+    public void alterar(mTipoSanguineo modelE) {
         Connection conn = mysql.conexao();
 
         PreparedStatement stmt = null;
@@ -60,18 +60,18 @@ public class cTipoSanguineo {
 
         try {
             stmt = conn.prepareStatement("UPDATE saida_de_sangue SET nome = ? WHERE id_Tipo_sanguíneo = ? ");
-            stmt.setInt(1, modelE.getId_tipo_sanguíneo());
+            stmt.setInt(1, modelE.getId_tipo_sanguineo());
 
             stmt.executeUpdate();
 
             JOptionPane.showMessageDialog(null, "Tipo sanguíneo alterado com êxito!");
 
         } catch (SQLException ex) {
-            Logger.getLogger(mTiposanguineo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(mTipoSanguineo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public void excluir(mTiposanguineo modelE) {
+    public void excluir(mTipoSanguineo modelE) {
         Connection conn = mysql.conexao();
 
         PreparedStatement stmt = null;
@@ -79,14 +79,14 @@ public class cTipoSanguineo {
 
         try {
             stmt = conn.prepareStatement("DELETE FROM tipo sanguíneo WHERE id_Tipo_sanguíneo = ?");
-            stmt.setInt(1, modelE.getId_tipo_sanguíneo());
+            stmt.setInt(1, modelE.getId_tipo_sanguineo());
 
             stmt.executeUpdate();
 
             JOptionPane.showMessageDialog(null, "Tipo sanguíneo excluído com êxito!");
 
         } catch (SQLException ex) {
-            Logger.getLogger(mTiposanguineo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(mTipoSanguineo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

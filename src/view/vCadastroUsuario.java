@@ -257,7 +257,7 @@ public class vCadastroUsuario extends javax.swing.JFrame {
         
         modelE.setId_Usuario(Integer.parseInt(jCodigo.getText()));
         controllerE.excluir(modelE);
-        listarDados();
+        //listarDados();
     }//GEN-LAST:event_bExcluirActionPerformed
 
     private void tUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tUsuariosMouseClicked
