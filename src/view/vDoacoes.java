@@ -5,6 +5,17 @@
  */
 package view;
 
+import controller.cDoacoes;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import javax.swing.table.DefaultTableModel;
+import model.mColaboradores;
+import model.mDoacoes;
+import model.mDoadores;
+import model.mTiposanguineo;
+
 /**
  *
  * @author ana.silva157
@@ -29,16 +40,16 @@ public class vDoacoes extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbDoador = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jIdDoacao = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        cbTipoSanguineo = new javax.swing.JComboBox<>();
+        cbColaborador = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        tfData = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -46,12 +57,12 @@ public class vDoacoes extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
-        tfPesquisar4 = new javax.swing.JTextField();
-        bPesquisar4 = new javax.swing.JButton();
+        tfPesquisar = new javax.swing.JTextField();
+        bPesquisar = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
-        tAutores4 = new javax.swing.JTable();
+        tAutores = new javax.swing.JTable();
         jLabel11 = new javax.swing.JLabel();
-        jComboBox8 = new javax.swing.JComboBox<>();
+        cbFiltro = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -60,7 +71,7 @@ public class vDoacoes extends javax.swing.JFrame {
 
         jLabel3.setText("Doador (a):");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbDoador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel4.setText(" Tipo sanguíneo:");
 
@@ -70,12 +81,12 @@ public class vDoacoes extends javax.swing.JFrame {
 
         jLabel2.setText("Data:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbTipoSanguineo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+        cbColaborador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbColaborador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox3ActionPerformed(evt);
+                cbColaboradorActionPerformed(evt);
             }
         });
 
@@ -84,9 +95,9 @@ public class vDoacoes extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 51, 51));
         jLabel6.setText("CADASTRO DE DOAÇÕES");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        tfData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                tfDataActionPerformed(evt);
             }
         });
 
@@ -113,6 +124,11 @@ public class vDoacoes extends javax.swing.JFrame {
         jButton4.setBackground(new java.awt.Color(204, 204, 204));
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton4.setText("Excluir");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setBackground(new java.awt.Color(204, 204, 204));
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -168,14 +184,14 @@ public class vDoacoes extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 234, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfData, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jIdDoacao, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbDoador, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbTipoSanguineo, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(55, 55, 55)
                                 .addComponent(jLabel6)))
@@ -197,18 +213,18 @@ public class vDoacoes extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbDoador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbTipoSanguineo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbColaborador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addContainerGap(65, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -220,20 +236,20 @@ public class vDoacoes extends javax.swing.JFrame {
 
         jPanel7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        tfPesquisar4.addActionListener(new java.awt.event.ActionListener() {
+        tfPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfPesquisar4ActionPerformed(evt);
+                tfPesquisarActionPerformed(evt);
             }
         });
 
-        bPesquisar4.setText("Pesquisar");
-        bPesquisar4.addActionListener(new java.awt.event.ActionListener() {
+        bPesquisar.setText("Pesquisar");
+        bPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bPesquisar4ActionPerformed(evt);
+                bPesquisarActionPerformed(evt);
             }
         });
 
-        tAutores4.setModel(new javax.swing.table.DefaultTableModel(
+        tAutores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -241,14 +257,14 @@ public class vDoacoes extends javax.swing.JFrame {
                 "Código", "Data", "Doador", "Tipo sanguíneo", "Colaborador"
             }
         ));
-        jScrollPane6.setViewportView(tAutores4);
+        jScrollPane6.setViewportView(tAutores);
 
         jLabel11.setText("Filtro:");
 
-        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código", "Data", "Doador", "Tipo sanguíneo", "Colaborador" }));
-        jComboBox8.addActionListener(new java.awt.event.ActionListener() {
+        cbFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código", "Data", "Doador", "Tipo sanguíneo", "Colaborador" }));
+        cbFiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox8ActionPerformed(evt);
+                cbFiltroActionPerformed(evt);
             }
         });
 
@@ -262,14 +278,14 @@ public class vDoacoes extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addComponent(tfPesquisar4, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tfPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(bPesquisar4))
+                                .addComponent(bPesquisar))
                             .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -278,12 +294,12 @@ public class vDoacoes extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfPesquisar4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bPesquisar4))
+                    .addComponent(tfPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bPesquisar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(130, Short.MAX_VALUE))
@@ -298,7 +314,7 @@ public class vDoacoes extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -313,36 +329,71 @@ public class vDoacoes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        mDoacoes modelL = new mDoacoes();
+        cDoacoes controllerE = new cDoacoes();
+
+        mDoadores modelE = (mDoadores) cbDoador.getSelectedItem();
+        mTiposanguineo modelA = (mTiposanguineo) cbTipoSanguineo.getSelectedItem();
+        mColaboradores ModelB = (mColaboradores) cbColaborador.getSelectedItem();
+
+        modelL.setDoadores(modelE);
+        modelL.setTiposanguineo(modelA);
+        modelL.setColaborador(ModelB);
+        try {
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+            Date dataFormatada;
+            dataFormatada = formato.parse(tfData.getText());
+            modelA.setData(dataFormatada);
+        } catch (ParseException ex) {
+            java.util.logging.Logger.getLogger(vDoadores.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        controllerE.cadastrar(modelL);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+    private void cbColaboradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbColaboradorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox3ActionPerformed
+    }//GEN-LAST:event_cbColaboradorActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void tfDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDataActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_tfDataActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void tfPesquisar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPesquisar4ActionPerformed
+    private void tfPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPesquisarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfPesquisar4ActionPerformed
+    }//GEN-LAST:event_tfPesquisarActionPerformed
 
-    private void bPesquisar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPesquisar4ActionPerformed
+    private void bPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPesquisarActionPerformed
+        DefaultTableModel tabela = (DefaultTableModel) tAutores.getModel();
+        cDoacoes controller = new cDoacoes();
+        tabela.setNumRows(0);
 
-    }//GEN-LAST:event_bPesquisar4ActionPerformed
+        for (mDoacoes modelE : controller.pesquisar(tfPesquisar.getText(), cbFiltro.getSelectedIndex())) {
+            tabela.addRow(new Object[]{
+                modelE.getId_doacao(),
+                modelE.getDoadores().getNome(),
+                modelE.getData(),
+                modelE.getTiposanguineo(),
+                modelE.getColaborador(), 
+            });
+        }
+    }//GEN-LAST:event_bPesquisarActionPerformed
 
-    private void jComboBox8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox8ActionPerformed
+    private void cbFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFiltroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox8ActionPerformed
+    }//GEN-LAST:event_cbFiltroActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -380,16 +431,16 @@ public class vDoacoes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bPesquisar4;
+    private javax.swing.JButton bPesquisar;
+    private javax.swing.JComboBox<String> cbColaborador;
+    private javax.swing.JComboBox<String> cbDoador;
+    private javax.swing.JComboBox<String> cbFiltro;
+    private javax.swing.JComboBox<String> cbTipoSanguineo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox8;
     private javax.swing.JTextField jIdDoacao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
@@ -402,8 +453,8 @@ public class vDoacoes extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTable tAutores4;
-    private javax.swing.JTextField tfPesquisar4;
+    private javax.swing.JTable tAutores;
+    private javax.swing.JTextField tfData;
+    private javax.swing.JTextField tfPesquisar;
     // End of variables declaration//GEN-END:variables
 }
