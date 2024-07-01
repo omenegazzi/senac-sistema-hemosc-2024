@@ -177,7 +177,7 @@ public class vProdutos extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButtonCadastrar.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonCadastrar.setBackground(new java.awt.Color(0, 255, 0));
         jButtonCadastrar.setText("Cadastrar");
         jButtonCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -185,6 +185,7 @@ public class vProdutos extends javax.swing.JFrame {
             }
         });
 
+        jButtonAlterar.setBackground(new java.awt.Color(255, 255, 0));
         jButtonAlterar.setText("Alterar");
         jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -192,6 +193,7 @@ public class vProdutos extends javax.swing.JFrame {
             }
         });
 
+        jButtonExcluir.setBackground(new java.awt.Color(255, 0, 0));
         jButtonExcluir.setText("Excluir");
         jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -388,15 +390,14 @@ public class vProdutos extends javax.swing.JFrame {
         DefaultTableModel tabela = (DefaultTableModel) jTableProdutos.getModel();
         cProdutos controllerPr = new cProdutos();
         tabela.setNumRows(0);
-        
-       
+             
 
-        /*for (mProdutos modelPr : controllerPr.pesquisar(jButtonPesquisar.getText(), jComboBoxProduto.getSelectedIndex())) {
+        for (mProdutos modelPr : controllerPr.Pesquisar(jButtonPesquisar.getText(), jComboBoxProduto.getSelectedIndex())) {
             tabela.addRow(new Object[]{
                 modelPr.getId_produto(),
                 modelPr.getId_produto()
             });
-        }*/   
+        }   
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     /**
