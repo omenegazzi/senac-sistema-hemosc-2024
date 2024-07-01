@@ -147,6 +147,20 @@ CREATE TABLE IF NOT EXISTS checklists (
     FOREIGN KEY (fk_perguntas_id_pergunta) REFERENCES perguntas(id_pergunta)
 );
 
+-- Criação da tabela `exames`
+CREATE TABLE exames (
+id_exame INT PRIMARY KEY ,
+fk_doadores_id_doador INT,
+doacoes VARCHAR(100),
+tipo_exame VARCHAR(100),
+resultado VARCHAR(100),
+data_exame DATE,
+FOREIGN KEY (fk_doadores_id_doador) REFERENCES doadores(id_doador));
+
+INSERT INTO exames (id_exame, fk_doadores_id_doador, doacoes, tipo_exame, resultado, data_exame) VALUES
+(1, 1, '0', 'Hemograma', 'Hematócrito, 38 a 52%', '2024-05-09'),
+(2, 2, '0', 'Glicemia de jejum', 'Inferior a 99 mg/dL', '2024-06-30');
+
 -- Verificação de tabelas criadas
 SHOW TABLES;
 
