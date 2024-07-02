@@ -35,13 +35,13 @@ public class vProdutos extends javax.swing.JFrame {
         cProdutos controllerPr = new cProdutos();
         tabela.setNumRows(0);
 
-        for (mProdutos modelPr : controllerPr.listar()) {
+        /*for (mProdutos modelPr : controllerPr.listar()) {
             tabela.addRow(new Object[]{
                 modelPr.getId_produto(),
                 modelPr.getClass()
             });
 
-        }
+        }*/
     }
     /**
      * This method is called from within the constructor to initialize the form.

@@ -347,7 +347,7 @@ public class vDoacoes extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(vDoadores.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        controllerE.cadastrar(modelL);
+        //controllerE.cadastrar(modelL);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -375,7 +375,7 @@ public class vDoacoes extends javax.swing.JFrame {
         cDoacoes controller = new cDoacoes();
         tabela.setNumRows(0);
 
-        for (mDoacoes modelE : controller.pesquisar(tfPesquisar.getText(), cbFiltro.getSelectedIndex())) {
+        /*for (mDoacoes modelE : controller.pesquisar(tfPesquisar.getText(), cbFiltro.getSelectedIndex())) {
             tabela.addRow(new Object[]{
                 modelE.getId_doacao(),
                 modelE.getDoadores().getNome(),
@@ -383,7 +383,7 @@ public class vDoacoes extends javax.swing.JFrame {
                 modelE.getTiposanguineo(),
                 modelE.getColaborador(), 
             });
-        }
+        }*/
     }//GEN-LAST:event_bPesquisarActionPerformed
 
     private void cbFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFiltroActionPerformed
