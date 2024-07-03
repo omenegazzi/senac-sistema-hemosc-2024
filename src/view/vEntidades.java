@@ -85,6 +85,11 @@ public class vEntidades extends javax.swing.JFrame {
         jButton2.setText("Alterar");
 
         jButton3.setText("Excluir");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Limpar");
 

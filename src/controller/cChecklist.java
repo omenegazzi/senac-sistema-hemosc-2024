@@ -25,23 +25,23 @@ import model.mPerguntas;
  * @author yasmim.oliveira3
  */
 public class cChecklist {
- 
+
     public List<mChecklist> listar() {
         Connection conn = mysql.conexao();
 
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        
+
         List<mChecklist> lista = new ArrayList<>();
-        
+
         try {
             stmt = conn.prepareStatement("SELECT * FROM checklists RIGHT JOIN "
                     + "perguntas ON perguntas.id_pergunta = checklists.fk_perguntas_id_pergunta");
             rs = stmt.executeQuery();
-            
+
             while (rs.next()) {
                 mChecklist modelM = new mChecklist();
-                
+
                 modelM.setId_checklist(rs.getInt("id_checklist"));
 
                 mPerguntas modelP = new mPerguntas();
@@ -51,37 +51,37 @@ public class cChecklist {
                 modelM.setPergunta(modelP);
                 modelM.setResposta(rs.getBoolean("resposta"));
 
-               
-               lista.add(modelM);
+                lista.add(modelM);
             }
 
         } catch (SQLException ex) {
             Logger.getLogger(cPerguntas.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return lista;
     }
-    
-     public void cadastrar(mChecklist modelM, mPerguntas modelP) {
+
+    public void cadastrar(mChecklist modelM, mPerguntas modelP, mDoadores modelD) {
         Connection conn = mysql.conexao();
 
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
         try {
-            stmt = conn.prepareStatement("INSERT INTO checklists (fk_perguntas_id_pergunta, resposta) VALUES (?,?)");
+            stmt = conn.prepareStatement("INSERT INTO checklists (fk_perguntas_id_pergunta, resposta, fk_doadores_id_doador) VALUES (?,?,?)");
 
-            modelM.setPergunta(modelP);
-            
+            modelM.setDoador(modelD);
+
             stmt.setInt(1, modelM.getPergunta().getId_pergunta());
             stmt.setBoolean(2, modelM.getResposta());
+            stmt.setInt(3, modelM.getDoador().getId_doadores());
             stmt.executeUpdate();
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(cPerguntas.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-     
+
     public void alterar(mChecklist modelC, mPerguntas modelP) {
         Connection conn = mysql.conexao();
 
@@ -94,12 +94,12 @@ public class cChecklist {
             stmt.setInt(2, modelC.getId_checklist());
             stmt.setInt(3, modelP.getId_pergunta());
             stmt.executeUpdate();
-        
+
         } catch (SQLException ex) {
             Logger.getLogger(cChecklist.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-      
+
     public void excluir(mChecklist modelC, mPerguntas modelP) {
         Connection conn = mysql.conexao();
 
@@ -116,5 +116,43 @@ public class cChecklist {
             Logger.getLogger(cChecklist.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-  
+
+    public List<mChecklist> pesquisar(int doador) {
+        Connection conn = mysql.conexao();
+
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        List<mChecklist> lista = new ArrayList<>();
+
+        try {
+
+            stmt = conn.prepareStatement("SELECT * FROM checklists RIGHT JOIN "
+                    + "perguntas ON perguntas.id_pergunta = checklists.fk_perguntas_id_pergunta "
+                    + " WHERE checklists.fk_doadores_id_doador = ? ");
+            stmt.setInt(1, doador);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                mChecklist modelM = new mChecklist();
+
+                modelM.setId_checklist(rs.getInt("id_checklist"));
+
+                mPerguntas modelP = new mPerguntas();
+                modelP.setId_pergunta(rs.getInt("id_pergunta"));
+                modelP.setDescricao(rs.getString("descricao"));
+
+                modelM.setPergunta(modelP);
+                modelM.setResposta(rs.getBoolean("resposta"));
+
+                lista.add(modelM);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(cChecklist.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return lista;
+    }
+
 }

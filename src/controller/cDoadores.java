@@ -100,22 +100,23 @@ public class cDoadores {
 
         try {
             stmt = conn.prepareStatement("SELECT * FROM doadores");
+            rs = stmt.executeQuery();
 
             while (rs.next()) {
                 mDoadores modelE = new mDoadores();
-                modelE.setId_doadores(rs.getInt("id_doadores"));
+                modelE.setId_doadores(rs.getInt("id_doador"));
                 modelE.setNome(rs.getString("nome"));
                 modelE.setEndereco(rs.getString("endereco"));
-                modelE.setTelefone(rs.getString("numero"));
+                modelE.setTelefone(rs.getString("telefone"));
                 modelE.setCpf(rs.getString("cpf"));
-                modelE.setEmail(rs.getString("cpf"));
+                modelE.setEmail(rs.getString("email"));
                 
                 mCidades modelC = new mCidades();
-                modelC.setId_cidade(rs.getInt("fk_cidades_id_cidade"));
+                modelC.setId_cidade(rs.getInt("id_cidade"));
                 
                 
                 mTipoSanguineo modelT = new mTipoSanguineo();
-                modelT.setId_tipo_sanguineo(rs.getInt("fk_TipoSanguino_id_tipo_sanguineo"));
+                modelT.setId_tipo_sanguineo(rs.getInt("id_tipo_sanguineo"));
 
                 modelE.setFkIdCidades(modelC);
                 modelE.setFkIdTipoSangue(modelT);

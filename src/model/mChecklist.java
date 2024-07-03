@@ -10,9 +10,11 @@ package model;
  * @author yasmim.oliveira3
  */
 public class mChecklist {
+
     private int id_checklist;
     private Boolean resposta;
     private mPerguntas pergunta;
+    private mDoadores doador;
 
     public int getId_checklist() {
         return id_checklist;
@@ -20,6 +22,14 @@ public class mChecklist {
 
     public void setId_checklist(int id_checklist) {
         this.id_checklist = id_checklist;
+    }
+
+    public mDoadores getDoador() {
+        return doador;
+    }
+
+    public void setDoador(mDoadores doador) {
+        this.doador = doador;
     }
 
     public Boolean getResposta() {
@@ -37,19 +47,18 @@ public class mChecklist {
     public void setPergunta(mPerguntas pergunta) {
         this.pergunta = pergunta;
     }
-    
+
     public int getIdPergunta() {
         return getPergunta().getId_pergunta();
     }
-    
+
     public int setIdPergunta() {
         return getPergunta().getId_pergunta();
     }
-    
+
     @Override
     public String toString() {
         return getPergunta().getDescricao();
     }
-    
 
 }
