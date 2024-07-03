@@ -371,7 +371,7 @@ public class vDoadores extends javax.swing.JFrame {
             SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
             Date dataFormatada;
             dataFormatada = formato.parse(jTextDataNasci.getText());
-            modelA.setData(dataFormatada);
+            //modelA.setData(dataFormatada);
         } catch (ParseException ex) {
             java.util.logging.Logger.getLogger(vDoadores.class.getName()).log(Level.SEVERE, null, ex);
         }

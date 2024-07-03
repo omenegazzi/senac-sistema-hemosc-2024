@@ -5,7 +5,7 @@
  */
 package view;
 
-import controller.cDoacoes;
+import Controller.cDoacoes;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;

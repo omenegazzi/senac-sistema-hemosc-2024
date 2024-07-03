@@ -94,7 +94,7 @@ public class cPerguntas {
         
         //Exclui primeiro o registro se existir no checklist
         try {
-            stmt = conn.prepareStatement("DELETE FROM checklst where fk_perguntas_id_pergunta = ? ");
+            stmt = conn.prepareStatement("DELETE FROM checklists where fk_perguntas_id_pergunta = ? ");
             stmt.setInt(1, modelP.getId_pergunta());
             stmt.executeUpdate();
         } catch (SQLException ex) {

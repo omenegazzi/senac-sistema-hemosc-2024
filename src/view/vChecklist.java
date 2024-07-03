@@ -6,13 +6,16 @@
 package view;
 
 import controller.cChecklist;
+import controller.cDoadores;
 import controller.cPerguntas;
 import java.sql.SQLException;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.mChecklist;
+import model.mDoadores;
 import model.mPerguntas;
 
 /**
@@ -26,6 +29,13 @@ public class vChecklist extends javax.swing.JFrame {
      */
     public vChecklist() {
         initComponents();
+        
+        cDoadores controllerD = new cDoadores();
+        
+        for (mDoadores modelM : controllerD.listar()) {
+            cbDoador.addItem(modelM);
+        }
+        
         listarDados();
     }
     
@@ -55,7 +65,7 @@ public class vChecklist extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbDoador = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tChecklist = new javax.swing.JTable();
@@ -63,6 +73,8 @@ public class vChecklist extends javax.swing.JFrame {
         bCadastrarChecklist = new javax.swing.JButton();
         bAlterar = new javax.swing.JButton();
         bExcluir = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        lCodigo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,8 +82,12 @@ public class vChecklist extends javax.swing.JFrame {
 
         jLabel1.setText("Doador");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.setToolTipText("Selecione o doador para realizar as perguntas");
+        cbDoador.setToolTipText("Selecione o doador para realizar as perguntas");
+        cbDoador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbDoadorActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Perguntas"));
 
@@ -170,6 +186,10 @@ public class vChecklist extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jLabel2.setText("Código");
+
+        lCodigo.setEnabled(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -179,9 +199,13 @@ public class vChecklist extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cbDoador, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -191,7 +215,9 @@ public class vChecklist extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbDoador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(lCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -225,15 +251,20 @@ public class vChecklist extends javax.swing.JFrame {
             for (int i = 0; i < tChecklist.getRowCount(); i++){
                 int id_pergunta = Integer.parseInt(tChecklist.getValueAt(i, 1).toString());
                 boolean resposta = (boolean) tChecklist.getValueAt(i, 3);
+                int id_doador = Integer.parseInt(lCodigo.getText());
 
+                mDoadores modelD = new mDoadores();
+                modelD.setId_doadores(id_doador);
+                
                 mPerguntas modelP = new mPerguntas();
                 modelP.setId_pergunta(id_pergunta);
 
                 mChecklist modelM = new mChecklist();
                 modelM.setPergunta(modelP);
+                modelM.setDoador(modelD);
 
                 modelC.setResposta(resposta);
-                controllerC.cadastrar(modelC, modelP);
+                controllerC.cadastrar(modelC, modelP, modelD);
             }
             JOptionPane.showMessageDialog(null, "Checklist cadastrada com sucesso");
             
@@ -302,6 +333,13 @@ public class vChecklist extends javax.swing.JFrame {
         listarDados();
     }//GEN-LAST:event_bExcluirActionPerformed
 
+    private void cbDoadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDoadorActionPerformed
+        mDoadores doador = (mDoadores) cbDoador.getSelectedItem();
+        
+        int id_doador = doador.getId_doadores();
+        lCodigo.setText(String.valueOf(id_doador));
+    }//GEN-LAST:event_cbDoadorActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -341,12 +379,14 @@ public class vChecklist extends javax.swing.JFrame {
     private javax.swing.JButton bAlterar;
     private javax.swing.JButton bCadastrarChecklist;
     private javax.swing.JButton bExcluir;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<Object> cbDoador;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField lCodigo;
     private javax.swing.JTable tChecklist;
     // End of variables declaration//GEN-END:variables
 }

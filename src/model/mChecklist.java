@@ -13,6 +13,7 @@ public class mChecklist {
     private int id_checklist;
     private Boolean resposta;
     private mPerguntas pergunta;
+    private mDoadores doador;
 
     public int getId_checklist() {
         return id_checklist;
@@ -44,6 +45,14 @@ public class mChecklist {
     
     public int setIdPergunta() {
         return getPergunta().getId_pergunta();
+    }
+
+    public mDoadores getDoador() {
+        return doador;
+    }
+
+    public void setDoador(mDoadores doador) {
+        this.doador = doador;
     }
     
     @Override
