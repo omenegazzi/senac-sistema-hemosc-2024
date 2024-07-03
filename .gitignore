@@ -1,6 +1,10 @@
+<<<<<<< OURS
+/nbproject/private/
+=======
 /nbproject/private/
 /build/
 <<<<<<< HEAD
 =======
 /dist/
 >>>>>>> origin/#72-checklistSalvar
+>>>>>>> THEIRS

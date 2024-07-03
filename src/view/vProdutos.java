@@ -35,13 +35,13 @@ public class vProdutos extends javax.swing.JFrame {
         cProdutos controllerPr = new cProdutos();
         tabela.setNumRows(0);
 
-        for (mProdutos modelPr : controllerPr.listar()) {
+        /*for (mProdutos modelPr : controllerPr.listar()) {
             tabela.addRow(new Object[]{
                 modelPr.getId_produto(),
                 modelPr.getClass()
             });
 
-        }
+        }*/
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -389,12 +389,12 @@ public class vProdutos extends javax.swing.JFrame {
         cProdutos controllerPr = new cProdutos();
         tabela.setNumRows(0);
 
-        for (mProdutos modelPr : controllerPr.pesquisar(jButtonPesquisar.getText(), jComboBoxProduto.getSelectedIndex())) {
+        /*for (mProdutos modelPr : controllerPr.Pesquisar(jButtonPesquisar.getText(), jComboBoxProduto.getSelectedIndex())) {
             tabela.addRow(new Object[]{
                 modelPr.getId_produto(),
                 modelPr.getId_produto()
             });
-        }  
+        } */
     }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     /**

@@ -12,10 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.mColaboradores;
 
 /**
  *
@@ -66,10 +64,10 @@ public class cProdutos {
         } catch (SQLException ex) {
             Logger.getLogger(mProdutos.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-    }
-
-    public void Excluir(mProdutos modelPr) {
+       
+    } 
+    
+        public void Excluir(mProdutos modelPr) {
         Connection conn = mysql.conexao();
 
         PreparedStatement stmt = null;
@@ -87,8 +85,8 @@ public class cProdutos {
         JOptionPane.showMessageDialog(null, "Produto excluido com sucesso");
 
     }
-
-    public void Pesquisar(mProdutos modelPr) {
+        
+       public void Pesquisar(mProdutos modelPr) {
         Connection conn = mysql.conexao();
 
         PreparedStatement stmt = null;
@@ -106,10 +104,6 @@ public class cProdutos {
         JOptionPane.showMessageDialog(null, "Pesquisa do Produto concluída com sucesso");
 
     }
-
-    public List<mProdutos> listar() {
-
-        return null;
-
-    }
+        
+         
 }

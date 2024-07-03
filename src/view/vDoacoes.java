@@ -60,7 +60,7 @@ public class vDoacoes extends javax.swing.JFrame {
         tfPesquisar = new javax.swing.JTextField();
         bPesquisar = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
-        tAutores = new javax.swing.JTable();
+        tDoacoes = new javax.swing.JTable();
         jLabel11 = new javax.swing.JLabel();
         cbFiltro = new javax.swing.JComboBox<>();
 
@@ -249,7 +249,7 @@ public class vDoacoes extends javax.swing.JFrame {
             }
         });
 
-        tAutores.setModel(new javax.swing.table.DefaultTableModel(
+        tDoacoes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -257,7 +257,12 @@ public class vDoacoes extends javax.swing.JFrame {
                 "Código", "Data", "Doador", "Tipo sanguíneo", "Colaborador"
             }
         ));
-        jScrollPane6.setViewportView(tAutores);
+        tDoacoes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tDoacoesMouseClicked(evt);
+            }
+        });
+        jScrollPane6.setViewportView(tDoacoes);
 
         jLabel11.setText("Filtro:");
 
@@ -310,7 +315,7 @@ public class vDoacoes extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(11, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -347,7 +352,7 @@ public class vDoacoes extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(vDoadores.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        controllerE.cadastrar(modelL);
+        //controllerE.cadastrar(modelL);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -371,11 +376,11 @@ public class vDoacoes extends javax.swing.JFrame {
     }//GEN-LAST:event_tfPesquisarActionPerformed
 
     private void bPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPesquisarActionPerformed
-        DefaultTableModel tabela = (DefaultTableModel) tAutores.getModel();
+        DefaultTableModel tabela = (DefaultTableModel) tDoacoes.getModel();
         cDoacoes controller = new cDoacoes();
         tabela.setNumRows(0);
 
-        for (mDoacoes modelE : controller.pesquisar(tfPesquisar.getText(), cbFiltro.getSelectedIndex())) {
+        /*for (mDoacoes modelE : controller.pesquisar(tfPesquisar.getText(), cbFiltro.getSelectedIndex())) {
             tabela.addRow(new Object[]{
                 modelE.getId_doacao(),
                 modelE.getDoadores().getNome(),
@@ -383,7 +388,7 @@ public class vDoacoes extends javax.swing.JFrame {
                 modelE.getTiposanguineo(),
                 modelE.getColaborador(), 
             });
-        }
+        }*/
     }//GEN-LAST:event_bPesquisarActionPerformed
 
     private void cbFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFiltroActionPerformed
@@ -391,8 +396,25 @@ public class vDoacoes extends javax.swing.JFrame {
     }//GEN-LAST:event_cbFiltroActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        mDoacoes modelI = new mDoacoes();
+        mDoacoes controllerI = new mDoacoes();
+        modelI.setId_doacao(Integer.parseInt(jIdDoacao.getText()));
+        //controllerI.excluir(modelI);
+        //listardados();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void tDoacoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tDoacoesMouseClicked
+        jIdDoacao.setText((String) tDoacoes.getValueAt(tDoacoes.getSelectedRow(), 0).toString());
+        tfData.setText((String) tDoacoes.getValueAt(tDoacoes.getSelectedRow(), 1).toString());
+
+        String doador = (String) tDoacoes.getValueAt(tDoacoes.getSelectedRow(), 2);
+        cbDoador.setSelectedItem(doador);
+
+        String tipoSanguineo = (String) tDoacoes.getValueAt(tDoacoes.getSelectedRow(), 3);
+        cbTipoSanguineo.setSelectedItem(tipoSanguineo);
+
+        String colaborador = (String) tDoacoes.getValueAt(tDoacoes.getSelectedRow(), 4);
+        cbColaborador.setSelectedItem(colaborador);        cbColaborador.setSelectedItem(colaborador);    }//GEN-LAST:event_tDoacoesMouseClicked
 
     /**
      * @param args the command line arguments
@@ -452,7 +474,7 @@ public class vDoacoes extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTable tAutores;
+    private javax.swing.JTable tDoacoes;
     private javax.swing.JTextField tfData;
     private javax.swing.JTextField tfPesquisar;
     // End of variables declaration//GEN-END:variables

@@ -55,7 +55,7 @@ public class mChecklist {
     public int setIdPergunta() {
         return getPergunta().getId_pergunta();
     }
-
+    
     @Override
     public String toString() {
         return getPergunta().getDescricao();

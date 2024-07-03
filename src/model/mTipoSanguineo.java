@@ -1,4 +1,3 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,6 +10,7 @@ package model;
  * @author gabriel.montibeller
  */
 public class mTipoSanguineo {
+
     private int id_tipo_sanguineo;
     private String descricao;
     private String fator_rh;

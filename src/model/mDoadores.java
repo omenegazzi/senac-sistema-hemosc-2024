@@ -91,7 +91,7 @@ public class mDoadores {
     }
 
     @Override
-    public String toString() {
+    public String toString(){
         return getNome();
     }
 }

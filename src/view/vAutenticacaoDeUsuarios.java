@@ -141,7 +141,7 @@ public class vAutenticacaoDeUsuarios extends javax.swing.JFrame {
     private void btEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarActionPerformed
      String txtNome;
      
-     try {
+     /*try {
      
      String sql = "Select * from tblUsuario where Login = and Senha = ?";
      
@@ -168,7 +168,8 @@ public class vAutenticacaoDeUsuarios extends javax.swing.JFrame {
            
            
            
-           catch (Exeption e) {
+           catch (Exeption e) { 
+               */
     }//GEN-LAST:event_btEntrarActionPerformed
 
     /**

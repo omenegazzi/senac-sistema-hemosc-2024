@@ -5,6 +5,10 @@
  */
 package view;
 
+import controller.cAgendamentos;
+import javax.swing.table.DefaultTableModel;
+import model.mAgendamentos;
+
 /**
  *
  * @author heber.gutierrez
@@ -12,10 +16,27 @@ package view;
 public class Vagendamento extends javax.swing.JFrame {
 
     /**
-     * Creates new form Vagendamento
+     * Creates new form
      */
     public Vagendamento() {
         initComponents();
+
+    }
+
+    public void listarDados() {
+
+        DefaultTableModel tabela = (DefaultTableModel) tAgendamento.getModel();
+        cAgendamentos controllerA = new cAgendamentos();
+        tabela.setNumRows(0);
+
+        for (mAgendamentos modelE : controllerA.listar()) {
+            tabela.addRow(new Object[]{
+                modelE.getId_Agendamento(),
+                modelE.getData(),
+                modelE.getHora()
+            });
+
+        }
     }
 
     /**
@@ -50,7 +71,7 @@ public class Vagendamento extends javax.swing.JFrame {
         jTfiltro = new javax.swing.JTextField();
         jBpesquisar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tAgendamento = new javax.swing.JTable();
 
         jLabel1.setText("jLabel1");
 
@@ -91,6 +112,11 @@ public class Vagendamento extends javax.swing.JFrame {
         jBcadastrar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jBcadastrar.setForeground(new java.awt.Color(0, 102, 255));
         jBcadastrar.setText("Cadastrar");
+        jBcadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBcadastrarActionPerformed(evt);
+            }
+        });
 
         jBalterar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jBalterar.setForeground(new java.awt.Color(0, 102, 255));
@@ -116,8 +142,8 @@ public class Vagendamento extends javax.swing.JFrame {
         jBpesquisar.setForeground(new java.awt.Color(0, 102, 255));
         jBpesquisar.setText("Pesquisar");
 
-        jTable1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tAgendamento.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        tAgendamento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null}
@@ -126,7 +152,7 @@ public class Vagendamento extends javax.swing.JFrame {
                 "Nome", "Codigo"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tAgendamento);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -232,8 +258,19 @@ public class Vagendamento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBexcluirActionPerformed
-        
+
     }//GEN-LAST:event_jBexcluirActionPerformed
+
+    private void jBcadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcadastrarActionPerformed
+        mAgendamentos modelPr = new mAgendamentos();
+        cAgendamentos controllerPr = new cAgendamentos();
+
+        modelPr.setId_Agendamento(Integer.parseInt(jTcodigoAgendamento.getText()));
+        //modelPr.setDate(jTdata.getData());
+        //modelPr.setTime(jTdata.getHora());
+        //controllerPr.cadastrar(modelPr);
+        listarDados();
+    }//GEN-LAST:event_jBcadastrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -289,11 +326,11 @@ public class Vagendamento extends javax.swing.JFrame {
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSmenu;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTcodigoAgendamento;
     private javax.swing.JTextField jTdata;
     private javax.swing.JTextField jTfiltro;
     private javax.swing.JTextField jThora;
     private javax.swing.JTextField jTnomeDoador;
+    private javax.swing.JTable tAgendamento;
     // End of variables declaration//GEN-END:variables
 }

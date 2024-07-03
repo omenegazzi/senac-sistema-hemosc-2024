@@ -11,11 +11,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import model.mChecklist;
 import model.mDoadores;
 import model.mPerguntas;
@@ -70,7 +68,9 @@ public class cChecklist {
         try {
             stmt = conn.prepareStatement("INSERT INTO checklists (fk_perguntas_id_pergunta, resposta, fk_doadores_id_doador) VALUES (?,?,?)");
 
+            modelM.setPergunta(modelP);
             modelM.setDoador(modelD);
+//            modelD.setId_doadores(modelD);
 
             stmt.setInt(1, modelM.getPergunta().getId_pergunta());
             stmt.setBoolean(2, modelM.getResposta());
@@ -129,8 +129,8 @@ public class cChecklist {
 
             stmt = conn.prepareStatement("SELECT * FROM checklists RIGHT JOIN "
                     + "perguntas ON perguntas.id_pergunta = checklists.fk_perguntas_id_pergunta "
-                    + " WHERE checklists.fk_doadores_id_doador = ? ");
-            stmt.setInt(1, doador);
+                   + " WHERE checklists.fk_doadores_id_doador = ? ");
+            stmt.setInt(1, doador );
             rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -145,7 +145,8 @@ public class cChecklist {
                 modelM.setPergunta(modelP);
                 modelM.setResposta(rs.getBoolean("resposta"));
 
-                lista.add(modelM);
+
+               lista.add(modelM);
             }
 
         } catch (SQLException ex) {
@@ -154,5 +155,4 @@ public class cChecklist {
 
         return lista;
     }
-
 }

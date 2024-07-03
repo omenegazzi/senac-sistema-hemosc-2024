@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 import model.mCidades;
 import model.mDoadores;
 import model.mTipoSanguineo;
+import java.util.Date;
 
 /**
  *
@@ -36,11 +37,47 @@ public class cDoadores {
         try {
 
             if (filtro == 0) {
-                stmt = conn.prepareStatement("SELECT * FROM doadores WHERE id_doador = ?");
-                stmt.setString(1, texto);
+                stmt = conn.prepareStatement("SELECT * FROM doadores WHERE nome like ?");
+                stmt.setString(1, "%" + texto + "%");
                 rs = stmt.executeQuery();
-            } else {
-                stmt = conn.prepareStatement("SELECT * FROM doadores WHERE nome like ? ");
+            }
+            else if(filtro == 1){
+                stmt = conn.prepareStatement("SELECT * From doadores WHERE id_doador = ?");
+                stmt.setString(1, "%" + texto + "%");
+                rs = stmt.executeQuery();
+            }
+            else if(filtro == 2){
+                stmt = conn.prepareStatement("SELECT * From doadores WHERE cpf like ?");
+                stmt.setString(1, "%" + texto + "%");
+                rs = stmt.executeQuery();
+            } 
+            else if(filtro == 3){
+                stmt = conn.prepareStatement("SELECT * From doadores WHERE fk_TipoSanguino_id_tipo_sanguineo like ?");
+                stmt.setString(1, "%" + texto + "%");
+                rs = stmt.executeQuery();
+            }
+            else if(filtro == 4){
+                stmt = conn.prepareStatement("SELECT * From doadores WHERE data_nascimento like ?");
+                stmt.setString(1, "%" + texto + "%");
+                rs = stmt.executeQuery();
+            }
+            else if(filtro == 5){
+                stmt = conn.prepareStatement("SELECT * From doadores WHERE fk_cidades_id_cidade like ?");
+                stmt.setString(1, "%" + texto + "%");
+                rs = stmt.executeQuery();
+            }
+            else if(filtro == 6){
+                stmt = conn.prepareStatement("SELECT * From doadores WHERE endereco like ?");
+                stmt.setString(1, "%" + texto + "%");
+                rs = stmt.executeQuery();
+            }
+            else if(filtro == 7){
+                stmt = conn.prepareStatement("SELECT * From doadores WHERE email like ?");
+                stmt.setString(1, "%" + texto + "%");
+                rs = stmt.executeQuery();
+            }
+            else {
+                stmt = conn.prepareStatement("SELECT * FROM doadores WHERE telefone like ? ");
                 stmt.setString(1, "%" + texto + "%");
                 rs = stmt.executeQuery();
             }
@@ -71,13 +108,16 @@ public class cDoadores {
         ResultSet rs = null;
 
         try {
-            stmt = conn.prepareStatement("INSERT INTO autores (nome,endereco,numero,bairro,cidade,cpf) VALUES (?,?,?,?,?,?)");
+            stmt = conn.prepareStatement("INSERT INTO autores (nome, cpf, data_nascimento, fk_TipoSanguino_id_tipo_sanguineo, fk_cidades_id_cidade, endereco, "
+                    + "email, telefone) VALUES (?,?,?,?,?,?,?,?)");
             stmt.setString(1, modelA.getNome());
-            stmt.setString(2, modelA.getEndereco());
-            //stmt.setString(3, modelA.getNumero());
-            ///stmt.setString(4, modelA.getBairro());
-            //stmt.setString(5, modelA.getCidade());
-            stmt.setString(6, modelA.getCpf());
+            stmt.setString(2, modelA.getCpf());
+            stmt.setDate(3, modelA.getDataNasc());
+            stmt.setInt(4, modelA.getFkIdTipoSangue().getId_tipo_sanguineo());
+            stmt.setInt(5, modelA.getFkIdCidades().getId_cidade());
+            stmt.setString(6, modelA.getEndereco());
+            stmt.setString(7, modelA.getEmail());
+            stmt.setString(8, modelA.getTelefone());
 
             stmt.executeUpdate();
 
@@ -134,21 +174,24 @@ public class cDoadores {
 
     }
 
-    public void alterar(cDoadores modelE) {
+    public void alterar(mDoadores modelE) {
         Connection conn = mysql.conexao();
 
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
         try {
-            stmt = conn.prepareStatement("UPDATE doador SET nome = ?, endereco = ?, bairro = ?, numero = ?, cidade = ?, cpf = ? WHERE id_doador = ? ");
-            //stmt.setString(1, modelE.getNome());
-            //stmt.setString(2, modelE.getEndereco());
-           //stmt.setString(3, modelE.getBairro());
-           // stmt.setString(4, modelE.getNumero());
-           // stmt.setString(5, modelE.getCidade());
-           // stmt.setString(6, modelE.getCpf());
-           // stmt.setInt(7, modelE.getId_autor());
+            stmt = conn.prepareStatement("UPDATE doador SET nome = ?, cpf = ?, data_de_nascimento = ?, fk_TipoSanguino_id_tipo_sanguineo = ?, fk_cidades_id_cidade = ?, "
+                    + "endereco = ?, email = ?, telefone = ? WHERE id_doador = ? ");
+            stmt.setString(1, modelE.getNome());
+            stmt.setString(2, modelE.getCpf());
+            stmt.setDate(3, modelE.getDataNasc());
+            stmt.setInt(4, modelE.getFkIdTipoSangue().getId_tipo_sanguineo());
+            stmt.setInt(5, modelE.getFkIdCidades().getId_cidade());
+            stmt.setString(6, modelE.getEndereco());
+            stmt.setString(7, modelE.getEmail());
+            stmt.setString(8, modelE.getTelefone());
+            stmt.setInt(9, modelE.getId_doadores());
 
             stmt.executeUpdate();
 

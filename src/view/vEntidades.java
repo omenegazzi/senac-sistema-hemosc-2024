@@ -5,7 +5,10 @@
  */
 package view;
 
+
 import controller.centidades;
+import javax.swing.table.DefaultTableModel;
+import model.mCidades;
 import model.mEntidades;
 
 /**
@@ -19,6 +22,29 @@ public class vEntidades extends javax.swing.JFrame {
      */
     public vEntidades() {
         initComponents();
+        listardados();
+        centidades controllera = new centidades ();
+        for (mEntidades modele : controllera.listar()) {
+            jComboBox1.addItem(modele.getNome());
+        }
+    }
+    
+
+    public void listardados() {
+        DefaultTableModel tabela = (DefaultTableModel) jTable2.getModel();
+        centidades controllere = new centidades();
+        tabela.setNumRows(0);
+
+        for (mEntidades modele : controllere.listar()) {
+            tabela.addRow(new Object[]{
+                modele.getId_entidades(),
+                modele.getNome(),
+                modele.getEndereco(),
+                modele.getCidades().getDescricao()
+ 
+            
+            });
+        }
     }
 
     /**
@@ -40,7 +66,7 @@ public class vEntidades extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jTextFieldCodigo = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jButtonCadastrar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -75,14 +101,25 @@ public class vEntidades extends javax.swing.JFrame {
 
         jTextFieldCodigo.setEnabled(false);
 
-        jButtonCadastrar.setText("Cadastrar");
-        jButtonCadastrar.addActionListener(new java.awt.event.ActionListener() {
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCadastrarActionPerformed(evt);
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Cadastrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
         jButton2.setText("Alterar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Excluir");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -105,6 +142,11 @@ public class vEntidades extends javax.swing.JFrame {
                 "Código", "Nome", "Endereço", "Cidade"
             }
         ));
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -148,7 +190,7 @@ public class vEntidades extends javax.swing.JFrame {
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(82, 82, 82)
-                        .addComponent(jButtonCadastrar))
+                        .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -175,7 +217,7 @@ public class vEntidades extends javax.swing.JFrame {
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonCadastrar)
+                    .addComponent(jButton1)
                     .addComponent(jButton2)
                     .addComponent(jButton4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -194,20 +236,42 @@ public class vEntidades extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        mEntidades modele = new mEntidades();
+        centidades controllere = new centidades();
+        modele.setId_entidades(Integer.parseInt(jTextFieldCodigo.getText()));
+        mCidades modelc = (mCidades) jComboBox1.getSelectedItem();
+        modele.setCidades(modelc);
+        modele.setNome(jTextFieldNome.getText());
+        modele.setEndereco(jTextFieldEndereco.getText());
+        modele.setCidades(modelc);
+        listardados();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
-        mEntidades modelA = new mEntidades();
-        centidades controllerA = new centidades();
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        mEntidades modele = new mEntidades();
+        centidades controllere = new centidades();
+        modele.setId_entidades(Integer.parseInt(jTextFieldCodigo.getText()));
+        controllere.excluir(modele);
+        listardados();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
-        modelA.setNome(jTextFieldNome.getText());
-        modelA.setEndereco(jTextFieldEndereco.getText());
-        
-       
-        //controllerA.cadastrar(modelA);
-        //listarDados();
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+      jTextFieldCodigo.setText(jTable2.getValueAt(jTable2.getSelectedRow(), 0).toString());
+     jTextFieldNome.setText(jTable2.getValueAt(jTable2.getSelectedRow(),1).toString());
+     jTextFieldEndereco.setText(jTable2.getValueAt(jTable2.getSelectedRow(),2).toString());
+     //mCidades modela = (mCidades) jComboBox1.getSelectedItem();
+     jComboBox1.setSelectedItem(jTable2.getValueAt(jTable2.getSelectedRow(),3).toString());
+     //modela.setEntidades(model);
+    }//GEN-LAST:event_jTable2MouseClicked
 
-    }//GEN-LAST:event_jButtonCadastrarActionPerformed
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -245,13 +309,13 @@ public class vEntidades extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButtonCadastrar;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<Object> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -265,6 +329,4 @@ public class vEntidades extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldEndereco;
     private javax.swing.JTextField jTextFieldNome;
     // End of variables declaration//GEN-END:variables
-
-    
 }

@@ -5,12 +5,14 @@
  */
 package view;
 
+import controller.CsaidaDeSangue;
 import controller.cTipoSanguineo;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 import model.mEntidades;
 import model.mSaidasDeSangue;
 import model.mTipoSanguineo;
@@ -41,9 +43,9 @@ public class vSaida_de_Sangue extends javax.swing.JFrame {
         tfPesquisar4 = new javax.swing.JTextField();
         bPesquisar4 = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
-        tAutores4 = new javax.swing.JTable();
+        tSaidadeSangue = new javax.swing.JTable();
         jLabel11 = new javax.swing.JLabel();
-        jComboBox8 = new javax.swing.JComboBox<>();
+        cbFiltro = new javax.swing.JComboBox<>();
         jTextField3 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -81,7 +83,7 @@ public class vSaida_de_Sangue extends javax.swing.JFrame {
             }
         });
 
-        tAutores4.setModel(new javax.swing.table.DefaultTableModel(
+        tSaidadeSangue.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -89,14 +91,14 @@ public class vSaida_de_Sangue extends javax.swing.JFrame {
                 "Código", "Data", "Tipo sanguíneo", "Quantidade", "Entidade"
             }
         ));
-        jScrollPane6.setViewportView(tAutores4);
+        jScrollPane6.setViewportView(tSaidadeSangue);
 
         jLabel11.setText("Filtro:");
 
-        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código", "Data", "Tipo sanguíneo", "Quantidade", "Entidade" }));
-        jComboBox8.addActionListener(new java.awt.event.ActionListener() {
+        cbFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Código", "Data", "Tipo sanguíneo", "Quantidade", "Entidade" }));
+        cbFiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox8ActionPerformed(evt);
+                cbFiltroActionPerformed(evt);
             }
         });
 
@@ -112,7 +114,7 @@ public class vSaida_de_Sangue extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,7 +134,7 @@ public class vSaida_de_Sangue extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -345,12 +347,25 @@ public class vSaida_de_Sangue extends javax.swing.JFrame {
     }//GEN-LAST:event_tfPesquisar4ActionPerformed
 
     private void bPesquisar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPesquisar4ActionPerformed
+        DefaultTableModel tabela = (DefaultTableModel) tSaidadeSangue.getModel();
+        CsaidaDeSangue controllerA = new CsaidaDeSangue();
+        tabela.setNumRows(0);
 
+        for (mSaidasDeSangue modelE : controllerA.pesquisar(tfPesquisar4.getText(), cbFiltro.getSelectedIndex())) {
+            tabela.addRow(new Object[]{
+                modelE.getId_saida_sangue(),
+                modelE.getEntidades(),
+                modelE.getTipo_sanguineo(),
+                modelE.getData(),
+                modelE.getQuantidade()
+            });
+
+        }
     }//GEN-LAST:event_bPesquisar4ActionPerformed
 
-    private void jComboBox8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox8ActionPerformed
+    private void cbFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFiltroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox8ActionPerformed
+    }//GEN-LAST:event_cbFiltroActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
@@ -441,6 +456,7 @@ public class vSaida_de_Sangue extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bPesquisar4;
+    private javax.swing.JComboBox<String> cbFiltro;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -448,7 +464,6 @@ public class vSaida_de_Sangue extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox8;
     private javax.swing.JTextField jIdSaida;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
@@ -464,7 +479,7 @@ public class vSaida_de_Sangue extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTable tAutores4;
+    private javax.swing.JTable tSaidadeSangue;
     private javax.swing.JTextField tfPesquisar4;
     // End of variables declaration//GEN-END:variables
 }

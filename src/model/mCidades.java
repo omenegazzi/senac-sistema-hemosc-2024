@@ -1,7 +1,7 @@
 package model;
 
 public class mCidades {
-    
+
     private int id_cidade;
     private int codigo_ibge;
     private String descricao;
@@ -38,5 +38,9 @@ public class mCidades {
     public void setUf(String uf) {
         this.uf = uf;
     }
-    
+
+    @Override
+    public String toString() {
+        return getDescricao();
+    }
 }

@@ -160,7 +160,7 @@ public class vExames extends javax.swing.JFrame {
                 bAlterarActionPerformed(evt);
             }
         });
-        bExcluir.setText("Excluir");
+
         bExcluir.setBackground(new java.awt.Color(255, 51, 51));
         bExcluir.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         bExcluir.setText("Excluir");
@@ -191,12 +191,11 @@ public class vExames extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bCadastrar)
-                    .addComponent(bAlterar)
-                    .addComponent(bExcluir))
-
-                    
-        ));
+                    .addComponent(bCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Consulta de Exames", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(255, 51, 51))); // NOI18N
@@ -207,8 +206,27 @@ public class vExames extends javax.swing.JFrame {
             },
             new String [] {
                 "Código", "Doador", "Doações", "Data do Exame"
-            }));
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
 
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTableExames.getTableHeader().setReorderingAllowed(false);
+        jScrollPane3.setViewportView(jTableExames);
+        if (jTableExames.getColumnModel().getColumnCount() > 0) {
+            jTableExames.getColumnModel().getColumn(0).setResizable(false);
+            jTableExames.getColumnModel().getColumn(1).setResizable(false);
+            jTableExames.getColumnModel().getColumn(2).setResizable(false);
+            jTableExames.getColumnModel().getColumn(3).setResizable(false);
+        }
+
+        bPesquisar.setBackground(new java.awt.Color(51, 102, 255));
+        bPesquisar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         bPesquisar.setText("Pesquisar");
         bPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -258,8 +276,6 @@ public class vExames extends javax.swing.JFrame {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-
-        cbDoador.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         try {
             tfDataExame.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));

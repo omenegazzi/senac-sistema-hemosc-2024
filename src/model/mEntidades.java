@@ -10,6 +10,7 @@ package model;
  * @author gabriel.oliveira38
  */
 public class mEntidades {
+
     private int id_entidades;
     private mCidades cidades;
     private String nome;
@@ -45,5 +46,10 @@ public class mEntidades {
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
+    }
+
+    @Override
+    public String toString() {
+        return getNome();
     }
 }
