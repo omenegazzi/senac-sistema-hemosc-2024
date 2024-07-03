@@ -69,4 +69,25 @@ public class cCidades {
         JOptionPane.showMessageDialog(null, "Cidade excluida com sucesso");
 
     }
+    public void PesquisarCidades(mCidades modelCidades) {
+        Connection conn = mysql.conexao();
+
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            stmt = conn.prepareStatement("Select * FROM cidades where id_cidade = ?");
+            stmt.setInt(1, modelCidades.getId_cidade());
+
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(cCidades.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        JOptionPane.showMessageDialog(null, "Pesquisa da cidade concluída com sucesso");
+
+    }
+    
+    
 }
+

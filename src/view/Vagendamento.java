@@ -99,6 +99,11 @@ public class Vagendamento extends javax.swing.JFrame {
         jBexcluir.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jBexcluir.setForeground(new java.awt.Color(0, 102, 255));
         jBexcluir.setText("Excluir");
+        jBexcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBexcluirActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 102, 255));
@@ -225,6 +230,10 @@ public class Vagendamento extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jBexcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBexcluirActionPerformed
+        
+    }//GEN-LAST:event_jBexcluirActionPerformed
 
     /**
      * @param args the command line arguments
